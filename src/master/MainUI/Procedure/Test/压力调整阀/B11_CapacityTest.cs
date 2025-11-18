@@ -13,11 +13,11 @@ namespace MainUI.Procedure.Test
             try
             {
                 // 供给容量
-                // TODO:暂时没有报表
-                double MRPressure = 785 /*Read("SET1").ToDouble()*/; //MR路充气值
-                double UpkPa = 490; /*Read("").ToDouble()*/  //上升至气压标准值
-                double DownkPa = 235; /*Read("").ToDouble()*/  //上升至气压标准值
-                VoltageOutput(100);   // 输出电压100V
+                double MRPressure = Read("SYQY").ToDouble(); ; //MR路充气值
+                double TestVoltage = Read("GDDY").ToDouble(); //试验电压
+                double UpkPa = Read("SET8").ToDouble(); ;   //上升至气压标准值
+                double DownkPa = Read("SET9").ToDouble(); ; //下降至气压标准值
+                VoltageOutput(TestVoltage);   // 输出电压100V
 
                 VX01(false);
                 VX02(false);
@@ -39,8 +39,7 @@ namespace MainUI.Procedure.Test
                 sw.Stop();
                 // 充气到目标值时间，Ticks以获得更高的精度
                 var InflateTime = sw.ElapsedTicks / (double)Stopwatch.Frequency; 
-                //TODO:暂无报表
-                Write("", InflateTime.ToString("F1")); // 保存时间，单位：秒
+                Write("val6", InflateTime.ToString("F1")); // 保存时间，单位：秒
                 Delay(10);
 
                 // 排气容量
@@ -48,10 +47,9 @@ namespace MainUI.Procedure.Test
                 VoltageControl(true); // 电压输出关闭
                 Delay(10, 100, () => PE06() <= DownkPa); //排空气压
                 sw.Stop();
-                //TODO:暂无报表
+                
                 var ExhaustTime = sw.ElapsedTicks / (double)Stopwatch.Frequency;
-                Write("", ExhaustTime.ToString("F1")); // 保存时间，单位：秒
-
+                Write("val15", ExhaustTime.ToString("F1")); // 保存时间，单位：秒
 
                 return true;
             }

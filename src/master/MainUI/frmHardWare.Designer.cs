@@ -56,6 +56,10 @@
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
+            ucCalibration8 = new MainUI.Procedure.UCCalibration();
+            ucCalibration15 = new MainUI.Procedure.UCCalibration();
+            ucCalibration16 = new MainUI.Procedure.UCCalibration();
+            ucCalibration17 = new MainUI.Procedure.UCCalibration();
             panel1.SuspendLayout();
             grpAI.SuspendLayout();
             panel3.SuspendLayout();
@@ -155,6 +159,10 @@
             // 
             panel3.AutoScroll = true;
             panel3.BackColor = Color.White;
+            panel3.Controls.Add(ucCalibration16);
+            panel3.Controls.Add(ucCalibration17);
+            panel3.Controls.Add(ucCalibration8);
+            panel3.Controls.Add(ucCalibration15);
             panel3.Controls.Add(ucCalibration6);
             panel3.Controls.Add(ucCalibration7);
             panel3.Controls.Add(ucCalibration5);
@@ -348,7 +356,7 @@
             ucCalibration12.Name = "ucCalibration12";
             ucCalibration12.Size = new Size(567, 38);
             ucCalibration12.TabIndex = 13;
-            ucCalibration12.Text = "备用";
+            ucCalibration12.Text = "电源36V";
             ucCalibration12.Submited += ucCalibration_AO_Submited;
             // 
             // ucCalibration13
@@ -361,7 +369,7 @@
             ucCalibration13.Name = "ucCalibration13";
             ucCalibration13.Size = new Size(567, 38);
             ucCalibration13.TabIndex = 12;
-            ucCalibration13.Text = "备用";
+            ucCalibration13.Text = "电源160V";
             ucCalibration13.Submited += ucCalibration_AO_Submited;
             // 
             // ucCalibration14
@@ -423,6 +431,58 @@
             label9.Size = new Size(67, 22);
             label9.TabIndex = 7;
             label9.Text = "零点值";
+            // 
+            // ucCalibration8
+            // 
+            ucCalibration8.Font = new Font("微软雅黑", 12F);
+            ucCalibration8.GainValue = 0D;
+            ucCalibration8.Index = 8;
+            ucCalibration8.Location = new Point(7, 390);
+            ucCalibration8.Margin = new Padding(4, 5, 4, 5);
+            ucCalibration8.Name = "ucCalibration8";
+            ucCalibration8.Size = new Size(567, 38);
+            ucCalibration8.TabIndex = 19;
+            ucCalibration8.Text = "暂留(kPa)";
+            ucCalibration8.Submited += ucCalibration_AI_Submited;
+            // 
+            // ucCalibration15
+            // 
+            ucCalibration15.Font = new Font("微软雅黑", 12F);
+            ucCalibration15.GainValue = 0D;
+            ucCalibration15.Index = 7;
+            ucCalibration15.Location = new Point(7, 348);
+            ucCalibration15.Margin = new Padding(4, 5, 4, 5);
+            ucCalibration15.Name = "ucCalibration15";
+            ucCalibration15.Size = new Size(567, 38);
+            ucCalibration15.TabIndex = 18;
+            ucCalibration15.Text = "暂留(kPa)";
+            ucCalibration15.Submited += ucCalibration_AI_Submited;
+            // 
+            // ucCalibration16
+            // 
+            ucCalibration16.Font = new Font("微软雅黑", 12F);
+            ucCalibration16.GainValue = 0D;
+            ucCalibration16.Index = 10;
+            ucCalibration16.Location = new Point(7, 469);
+            ucCalibration16.Margin = new Padding(4, 5, 4, 5);
+            ucCalibration16.Name = "ucCalibration16";
+            ucCalibration16.Size = new Size(567, 38);
+            ucCalibration16.TabIndex = 21;
+            ucCalibration16.Text = "电压传感器2(V)";
+            ucCalibration16.Submited += ucCalibration_AI_Submited;
+            // 
+            // ucCalibration17
+            // 
+            ucCalibration17.Font = new Font("微软雅黑", 12F);
+            ucCalibration17.GainValue = 0D;
+            ucCalibration17.Index = 9;
+            ucCalibration17.Location = new Point(7, 429);
+            ucCalibration17.Margin = new Padding(4, 5, 4, 5);
+            ucCalibration17.Name = "ucCalibration17";
+            ucCalibration17.Size = new Size(567, 38);
+            ucCalibration17.TabIndex = 20;
+            ucCalibration17.Text = "电压传感器1(V)";
+            ucCalibration17.Submited += ucCalibration_AI_Submited;
             // 
             // frmHardWare
             // 
@@ -488,5 +548,9 @@
         private Label label7;
         private Label label8;
         private Label label9;
+        private Procedure.UCCalibration ucCalibration16;
+        private Procedure.UCCalibration ucCalibration17;
+        private Procedure.UCCalibration ucCalibration8;
+        private Procedure.UCCalibration ucCalibration15;
     }
 }

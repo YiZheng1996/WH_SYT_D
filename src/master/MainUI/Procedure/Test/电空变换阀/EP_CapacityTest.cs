@@ -21,7 +21,7 @@
 
                 // 1.操作电流A，设定RD2.5L压力＝500 kPa。
                 // 暂时从400mA电流开始输出
-                int InitialCurrent = 0;
+                int InitialCurrent = 400;
                 int lastSecond = 0;
                 Stopwatch sw = Stopwatch.StartNew();
                 bool timeout = Delay(90, 100,

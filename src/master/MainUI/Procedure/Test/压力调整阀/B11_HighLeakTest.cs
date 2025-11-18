@@ -12,11 +12,11 @@ namespace MainUI.Procedure.Test
             await base.Execute(cancellationToken);
             try
             {
-                // TODO:暂时没有报表
-                double MRPressure = 785 /*Read("SET1").ToDouble()*/; //MR路充气值
-    
+                double MRPressure = Read("SET1").ToDouble(); //MR路充气值
+                double TestVoltage = Read("GDDY").ToDouble(); //试验电压
+
                 BCRoadExhaust(true);  // BC电磁阀打开
-                VoltageOutput(100);   // 输出电压100V
+                VoltageOutput(TestVoltage);   // 输出电压100V
                 VoltageControl(false); // 电压输出关闭
                 MRInflate(MRPressure);// MR充气
 
@@ -25,12 +25,13 @@ namespace MainUI.Procedure.Test
                 VX03(false);
                 VX08(false);
                 double StartPressure = PE05();
-                Delay(30, "稳压时间");
-                double StopPressure = PE05();
-                double Pressure = StartPressure - StopPressure;
+                Write("ks4", StartPressure.ToString("f1"));
 
-                // TODO:暂无报表
-                //Write("", Pressure.ToString("f1"));
+                Delay(30, "稳压时间");
+
+                double StopPressure = PE05();
+                Write("js4", StopPressure.ToString("f1"));
+                //double Pressure = StartPressure - StopPressure;
 
                 return true;
             }

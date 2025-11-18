@@ -10,11 +10,11 @@
             await base.Execute(cancellationToken);
             try
             {
-                // TODO:暂时没有报表
-                double MRPressure = 785 /*Read("SET1").ToDouble()*/; //MR路充气值
+                double MRPressure = Read("SET1").ToDouble(); //MR路充气值
+                double TestVoltage = Read("GDDY").ToDouble(); //试验电压
 
                 BCRoadExhaust(true);  // BC电磁阀打开
-                VoltageOutput(100);   // 输出电压100V
+                VoltageOutput(TestVoltage);   // 输出电压100V
                 VoltageControl(true); // 电压输出开启
                 MRInflate(MRPressure);// MR充气
 
@@ -23,13 +23,11 @@
                 VX03(false);
                 VX08(false);
                 double StartPressure = PE05();
+                Write("ks1", StartPressure.ToString("f1"));
                 Delay(30, "稳压时间");
                 double StopPressure = PE05();
-                double Pressure = StartPressure - StopPressure;
-
-                // TODO:暂无报表
-                //Write("", Pressure.ToString("f1"));
-
+                Write("js1", StopPressure.ToString("f1"));
+                //double Pressure = StartPressure - StopPressure;
                 return true;
             }
             catch (Exception ex)

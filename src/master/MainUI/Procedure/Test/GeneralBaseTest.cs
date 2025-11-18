@@ -34,6 +34,18 @@
             {
                 TestStatus(true);
 
+                Write("TuHao", VarHelper.TestViewModel.DrawingNo);  // 图号
+                Write("XH", VarHelper.TestViewModel.ModelName);     // 型号
+                Write("SYLB", VarHelper.TestViewModel.ModelTypeName);   // 试验类别
+                Write("SYSJ", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));   // 试验时间
+                Write("CheHao", ""); // 车号
+                Write("ZZBH", VarHelper.TestViewModel.MakeNumber);   // 制造编号
+                Write("XLZM", "");   // 修理者名
+                Write("ShiDu", "");  // 湿度
+                Write("ZZS", "");    // 制造商
+                Write("SYY", NewUsers.NewUserInfo.Username);    // 试验员
+                Write("BeiZhu", VarHelper.TestViewModel.Remarks);    // 备注
+                
                 // 试验前排空所有气压
                 SetSolenoidValueS(0.0, true);
                 SetCurrentOutput(0); // 电流给0
@@ -118,7 +130,7 @@
         /// </summary>
         /// <param name="CellName">单元格名称</param>
         /// <param name="CellValue">需要写入的值</param>
-        public void Write(string CellName, string CellValue)
+        public static void Write(string CellName, string CellValue)
         {
             Report.Write(CellName, CellValue);
         }
@@ -174,7 +186,8 @@
         public static void VoltageControl(bool Value)
         {
             //TODO:由于未出点表，暂定DO20控制电压输出
-            OPCHelper.DOgrp[20] = Value;
+            // 20251118,将DO20改为DO4
+            OPCHelper.DOgrp[4] = Value;
         }
         #endregion
 
@@ -185,7 +198,6 @@
         /// <param name="Pressure"></param>
         public static void EP01(double Pressure)
         {
-            //TODO:由于未出点表，暂定CA00控制EP阀
             OPCHelper.AOgrp.CA00 = Pressure;
         }
 
@@ -197,8 +209,10 @@
         {
             //TODO:由于未出点表，暂定CA01输出电流
             // 电流不得高于750mA以上。如果高于750mA以上，则试验品有可能被烧毁。
+
+            // 20251118,将CA01改为CA02
             if (Current >= 750) Current = 750;
-            OPCHelper.AOgrp.CA01 = Current;
+            OPCHelper.AOgrp.CA02 = Current;
         }
 
         /// <summary>
@@ -218,7 +232,8 @@
         public static void VoltageOutput(double Voltage)
         {
             //TODO:由于未出点表，暂定CA02输出电压，好像还少了DO点 确认输出点
-            OPCHelper.AOgrp.CA02 = Voltage;
+            // 20251118,将CA02改为CA01
+            OPCHelper.AOgrp.CA01 = Voltage;
             Thread.Sleep(1000); // 等待1000ms确保电压输出稳定
             VoltageControl(true);
         }
@@ -231,7 +246,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX01(bool value)
         {
-            OPCHelper.DOgrp[1] = value;
+            OPCHelper.DOgrp[8] = value;
         }
 
         /// <summary>
@@ -240,7 +255,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX02(bool value)
         {
-            OPCHelper.DOgrp[2] = value;
+            OPCHelper.DOgrp[9] = value;
         }
 
         /// <summary>
@@ -249,7 +264,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX03(bool value)
         {
-            OPCHelper.DOgrp[3] = value;
+            OPCHelper.DOgrp[10] = value;
         }
 
         /// <summary>
@@ -258,7 +273,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX04(bool value)
         {
-            OPCHelper.DOgrp[4] = value;
+            OPCHelper.DOgrp[11] = value;
         }
 
         /// <summary>
@@ -267,7 +282,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX05(bool value)
         {
-            OPCHelper.DOgrp[5] = value;
+            OPCHelper.DOgrp[12] = value;
         }
 
         /// <summary>
@@ -276,7 +291,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX06(bool value)
         {
-            OPCHelper.DOgrp[6] = value;
+            OPCHelper.DOgrp[13] = value;
         }
 
         /// <summary>
@@ -285,7 +300,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX07(bool value)
         {
-            OPCHelper.DOgrp[7] = value;
+            OPCHelper.DOgrp[14] = value;
         }
 
         /// <summary>
@@ -294,7 +309,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX08(bool value)
         {
-            OPCHelper.DOgrp[8] = value;
+            OPCHelper.DOgrp[15] = value;
         }
 
         /// <summary>
@@ -303,7 +318,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX09(bool value)
         {
-            OPCHelper.DOgrp[9] = value;
+            OPCHelper.DOgrp[16] = value;
         }
 
         /// <summary>
@@ -312,7 +327,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX10(bool value)
         {
-            OPCHelper.DOgrp[10] = value;
+            OPCHelper.DOgrp[17] = value;
         }
 
         /// <summary>
@@ -321,7 +336,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX11(bool value)
         {
-            OPCHelper.DOgrp[11] = value;
+            OPCHelper.DOgrp[18] = value;
         }
 
         /// <summary>
@@ -330,7 +345,7 @@
         /// <param name="value">打开或者关闭</param>
         public static void VX12(bool value)
         {
-            OPCHelper.DOgrp[12] = value;
+            OPCHelper.DOgrp[19] = value;
         }
         #endregion
 

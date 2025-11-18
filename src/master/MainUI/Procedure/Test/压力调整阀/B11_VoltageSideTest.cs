@@ -1,7 +1,7 @@
 ﻿namespace MainUI.Procedure.Test
 {
     /// <summary>
-    /// 调压试验
+    /// 调压试验（临时）
     /// </summary>
     public class B11_VoltageSideTest : GeneralBaseTest
     {
@@ -10,13 +10,14 @@
             await base.Execute(cancellationToken);
             try
             {
-                // TODO:暂时没有报表
-                double MRPressure = 785 /*Read("SET1").ToDouble()*/; //MR路充气值
-                double HighPressure = 645 /*Read("SET2").ToDouble()*/; //高压侧压力值
-                double HighToPressure = 655 /*Read("SET2").ToDouble()*/; //高压侧压力值
+                // 高侧压试验
+                double MRPressure = Read("SYQY").ToDouble(); ; //MR路充气值
+                double HighPressure = Read("SET10").ToDouble(); //高压侧压力值
+                double HighToPressure = Read("SET11").ToDouble(); ; //高压侧压力值
+                double TestVoltage = Read("GDDY").ToDouble(); //试验电压
 
                 BCRoadExhaust(true);  // BC电磁阀打开
-                VoltageOutput(100);   // 输出电压100V
+                VoltageOutput(TestVoltage);   // 输出电压100V
                 VoltageControl(true); // 电压输出开启
                 MRInflate(MRPressure);// MR充气
 
@@ -50,12 +51,11 @@
                     }
                 }
 
-                // TODO:暂时没有报表
-                //Write("", PE05().ToString("f1"));
+                Write("val1", PE05().ToString("f1"));
 
                 // 低压侧试验
-                double LowPressure = 435 /*Read("SET2").ToDouble()*/;   // 低压侧压力值
-                double LowToPressure = 455 /*Read("SET2").ToDouble()*/; // 低压侧压力值
+                double LowPressure =  Read("SET12").ToDouble();   // 低压侧压力值
+                double LowToPressure = Read("SET13").ToDouble(); ; // 低压侧压力值
 
                 VoltageControl(true); // 电压输出开启
                 VX06(true);
@@ -92,8 +92,7 @@
                     }
                 }
 
-                // TODO:暂时没有报表
-                //Write("", PE05().ToString("f1"));
+                Write("val10", PE05().ToString("f1"));
 
                 return true;
             }

@@ -1,7 +1,7 @@
 ﻿namespace MainUI.Procedure.Test
 {
     /// <summary>
-    /// 高压侧调压试验
+    /// 调压试验(确认)
     /// </summary>
     public class B11_ProfilePressureTest : GeneralBaseTest
     {
@@ -10,44 +10,88 @@
             await base.Execute(cancellationToken);
             try
             {
-                // 使用示例
-                // 简单延时 2 秒
-                Delay(2.0);
+                double MRPressure = Read("SYQY").ToDouble(); ; //MR路充气值
+                double HighPressure = Read("SET14").ToDouble(); //高压侧压力值
+                double HighToPressure = Read("SET15").ToDouble(); ; //高压侧压力值
+                double TestVoltage = Read("GDDY").ToDouble(); //试验电压
 
-                // 等待条件满足（最多10秒）
-                // wait() 返回 true 表示条件满足，退出等待
-                bool timeout = Delay(10.0, 100, () => OPCHelper.AIgrp[0] > 100.0);
-                if (timeout)
+                BCRoadExhaust(true);  // BC电磁阀打开
+                VoltageOutput(TestVoltage);   // 输出电压100V
+                VoltageControl(true); // 电压输出开启
+                MRInflate(MRPressure);// MR充气
+
+                VoltageControl(false); // 电压输出关闭
+                FrmVoltageSide frmVoltage = new()
                 {
-                    TxtTips("等待超时");
-                    return false;
+                    PromptMessage = $"请转动高压侧调整螺钉（下侧）来进行调整压力至指定值({HighPressure}～{HighToPressure})后，点击是提交。"
+                };
+                VarHelper.ShowDialogWithOverlay(Frm, frmVoltage);
+
+                for (int i = 0; i < 3; i++)
+                {
+                    VX06(true);
+                    Delay(5, "排气时间");
+                    VX06(false);
+                    Delay(10, "稳压时间");
+                    double pressure = PE05();
+                    if (pressure >= HighPressure && pressure <= HighToPressure)
+                    {
+                        break;
+                    }
+                    else if (i == 2)
+                    {
+                        throw new("高压侧压力值不在指定范围内，试验失败！");
+                    }
+                    else
+                    {
+                        MessageHelper.MessageOK(Frm, $"高压侧压力值不在指定范围内，请转动高压侧调整螺钉（下侧）来进行重新调节！", AntdUI.TType.Error);
+                        frmVoltage.PromptMessage = $"请转动高压侧调整螺钉（下侧）来进行调整压力至指定值({HighPressure}～{HighToPressure})后，点击是提交。";
+                        VarHelper.ShowDialogWithOverlay(Frm, frmVoltage);
+                    }
                 }
 
-                if (!ShowConfirmDialog("是否继续?"))
+                Write("val8", PE05().ToString("f1"));
+
+                // 低压侧试验
+                double LowPressure = Read("SET16").ToDouble();   // 低压侧压力值
+                double LowToPressure = Read("SET17").ToDouble(); ; // 低压侧压力值
+
+                VoltageControl(true); // 电压输出开启
+                VX06(true);
+                Delay(5, "排气时间");
+                VX06(false);
+                Delay(10, "稳压时间");
+
+                frmVoltage = new()
                 {
-                    return false;
+                    PromptMessage = $"请转动高压侧调整螺钉（上侧）来进行调整压力至指定值({LowPressure}～{LowToPressure})后，点击是提交。"
+                };
+                VarHelper.ShowDialogWithOverlay(Frm, frmVoltage);
+
+                for (int i = 0; i < 3; i++)
+                {
+                    VX06(true);
+                    Delay(5, "排气时间");
+                    VX06(false);
+                    Delay(10, "稳压时间");
+                    double pressure = PE05();
+                    if (pressure >= LowPressure && pressure <= LowToPressure)
+                    {
+                        break;
+                    }
+                    else if (i == 2)
+                    {
+                        throw new("低压侧压力值不在指定范围内，试验失败！");
+                    }
+                    else
+                    {
+                        MessageHelper.MessageOK(Frm, $"低压侧压力值不在指定范围内，请转动低压侧调整螺钉（上侧）重新调节！", AntdUI.TType.Error);
+                        frmVoltage.PromptMessage = $"请转动高压侧调整螺钉（上侧）来进行调整压力至指定值({LowPressure}～{LowToPressure})后，点击确定提交。";
+                        VarHelper.ShowDialogWithOverlay(Frm, frmVoltage);
+                    }
                 }
 
-                // 带图标类型的确认
-                if (!ShowConfirmDialog("检测到异常，是否继续?", AntdUI.TType.Warn))
-                {
-                    return false;
-                }
-
-                // 显示各种提示
-                ShowSuccessDialog("操作成功");
-                ShowWarningDialog("注意检查");
-                ShowErrorDialog("操作失败");
-                ShowInfoDialog("提示信息");
-
-                //  等待多个条件之一满足（最多5秒）
-                Delay(5, 100,
-                    () => OPCHelper.DIgrp[1],           // 条件1：DI[1] 为 true
-                    () => OPCHelper.AIgrp[0] > 50.0     // 条件2：AI[0] > 50
-                );
-
-                //  带步骤名称的延时（显示倒计时）
-                Delay(30, 100, () => false, "预热阶段");
+                Write("val16", PE05().ToString("f1"));
 
                 return true;
             }

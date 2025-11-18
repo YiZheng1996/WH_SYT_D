@@ -219,7 +219,8 @@ namespace MainUI
             {
                 btnProductSelection, // 产品选择按钮
                 TableItemPoint,    // 测试项表格
-                panelHand         // 手动控制面板
+                panelHand,        // 手动控制面板
+                grpRainy            // 
             };
 
             // 批量设置控件状态
@@ -398,6 +399,10 @@ namespace MainUI
         {
             try
             {
+                // 产品编号，备注赋值
+                VarHelper.TestViewModel.MakeNumber = txtMakeNumber.Text;
+                VarHelper.TestViewModel.Remarks = txtRemarks.Text;
+
                 // 1. 检查前置条件
                 (bool Result, string txt) = FrmText();
                 if (!Result)
@@ -674,7 +679,7 @@ namespace MainUI
             {
                 var btn = sender as UIButton;
                 using frmSetOutValue fs = new(OPCHelper.TestCongrp[btn.Tag.ToInt32()].ToDouble(), btn.Text, 10000);
-                VarHelper.ShowDialogWithOverlay(frm, fs);   
+                VarHelper.ShowDialogWithOverlay(frm, fs);
                 if (fs.DialogResult == DialogResult.OK)
                 {
                     ControlHelper.ButtonClickAsync(sender, () =>
@@ -875,5 +880,10 @@ namespace MainUI
         }
 
         #endregion
+
+        private void RadioAuto_CheckedChanged(object sender, EventArgs e)
+        {
+            OPCHelper.TestCongrp[0] = RadioAuto.Checked;
+        }
     }
 }

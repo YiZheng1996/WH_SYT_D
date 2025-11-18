@@ -58,9 +58,9 @@ namespace MainUI
             btnWorkmanshipForms = new AntdUI.Button();
             btnReportForms = new AntdUI.Button();
             uiTitlePanel4 = new UITitlePanel();
-            uiTextBox6 = new UITextBox();
+            txtRemarks = new UITextBox();
             uiLabel5 = new UILabel();
-            uiTextBox5 = new UITextBox();
+            txtMakeNumber = new UITextBox();
             uiLabel1 = new UILabel();
             txtType = new UITextBox();
             txtModel = new UITextBox();
@@ -591,9 +591,9 @@ namespace MainUI
             // uiTitlePanel4
             // 
             uiTitlePanel4.BackColor = Color.FromArgb(236, 236, 236);
-            uiTitlePanel4.Controls.Add(uiTextBox6);
+            uiTitlePanel4.Controls.Add(txtRemarks);
             uiTitlePanel4.Controls.Add(uiLabel5);
-            uiTitlePanel4.Controls.Add(uiTextBox5);
+            uiTitlePanel4.Controls.Add(txtMakeNumber);
             uiTitlePanel4.Controls.Add(uiLabel1);
             uiTitlePanel4.Controls.Add(txtType);
             uiTitlePanel4.Controls.Add(btnProductSelection);
@@ -622,28 +622,28 @@ namespace MainUI
             uiTitlePanel4.TitleColor = Color.FromArgb(65, 100, 204);
             uiTitlePanel4.TitleHeight = 29;
             // 
-            // uiTextBox6
+            // txtRemarks
             // 
-            uiTextBox6.BackColor = Color.Transparent;
-            uiTextBox6.FillColor = Color.FromArgb(218, 220, 230);
-            uiTextBox6.FillColor2 = Color.FromArgb(218, 220, 230);
-            uiTextBox6.FillDisableColor = Color.FromArgb(218, 220, 230);
-            uiTextBox6.FillReadOnlyColor = Color.FromArgb(218, 220, 230);
-            uiTextBox6.Font = new Font("微软雅黑", 11F, FontStyle.Bold);
-            uiTextBox6.Location = new Point(90, 258);
-            uiTextBox6.Margin = new Padding(4, 5, 4, 5);
-            uiTextBox6.MinimumSize = new Size(1, 16);
-            uiTextBox6.Name = "uiTextBox6";
-            uiTextBox6.Padding = new Padding(5);
-            uiTextBox6.Radius = 15;
-            uiTextBox6.RectColor = Color.FromArgb(218, 220, 230);
-            uiTextBox6.RectDisableColor = Color.FromArgb(218, 220, 230);
-            uiTextBox6.RectReadOnlyColor = Color.FromArgb(218, 220, 230);
-            uiTextBox6.ShowText = false;
-            uiTextBox6.Size = new Size(148, 28);
-            uiTextBox6.TabIndex = 71;
-            uiTextBox6.TextAlignment = ContentAlignment.MiddleLeft;
-            uiTextBox6.Watermark = "请输入";
+            txtRemarks.BackColor = Color.Transparent;
+            txtRemarks.FillColor = Color.FromArgb(218, 220, 230);
+            txtRemarks.FillColor2 = Color.FromArgb(218, 220, 230);
+            txtRemarks.FillDisableColor = Color.FromArgb(218, 220, 230);
+            txtRemarks.FillReadOnlyColor = Color.FromArgb(218, 220, 230);
+            txtRemarks.Font = new Font("微软雅黑", 11F, FontStyle.Bold);
+            txtRemarks.Location = new Point(90, 258);
+            txtRemarks.Margin = new Padding(4, 5, 4, 5);
+            txtRemarks.MinimumSize = new Size(1, 16);
+            txtRemarks.Name = "txtRemarks";
+            txtRemarks.Padding = new Padding(5);
+            txtRemarks.Radius = 15;
+            txtRemarks.RectColor = Color.FromArgb(218, 220, 230);
+            txtRemarks.RectDisableColor = Color.FromArgb(218, 220, 230);
+            txtRemarks.RectReadOnlyColor = Color.FromArgb(218, 220, 230);
+            txtRemarks.ShowText = false;
+            txtRemarks.Size = new Size(148, 28);
+            txtRemarks.TabIndex = 71;
+            txtRemarks.TextAlignment = ContentAlignment.MiddleLeft;
+            txtRemarks.Watermark = "请输入";
             // 
             // uiLabel5
             // 
@@ -658,28 +658,28 @@ namespace MainUI
             uiLabel5.Text = "备    注:";
             uiLabel5.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // uiTextBox5
+            // txtMakeNumber
             // 
-            uiTextBox5.BackColor = Color.Transparent;
-            uiTextBox5.FillColor = Color.FromArgb(218, 220, 230);
-            uiTextBox5.FillColor2 = Color.FromArgb(218, 220, 230);
-            uiTextBox5.FillDisableColor = Color.FromArgb(218, 220, 230);
-            uiTextBox5.FillReadOnlyColor = Color.FromArgb(218, 220, 230);
-            uiTextBox5.Font = new Font("微软雅黑", 11F, FontStyle.Bold);
-            uiTextBox5.Location = new Point(90, 215);
-            uiTextBox5.Margin = new Padding(4, 5, 4, 5);
-            uiTextBox5.MinimumSize = new Size(1, 16);
-            uiTextBox5.Name = "uiTextBox5";
-            uiTextBox5.Padding = new Padding(5);
-            uiTextBox5.Radius = 15;
-            uiTextBox5.RectColor = Color.FromArgb(218, 220, 230);
-            uiTextBox5.RectDisableColor = Color.FromArgb(218, 220, 230);
-            uiTextBox5.RectReadOnlyColor = Color.FromArgb(218, 220, 230);
-            uiTextBox5.ShowText = false;
-            uiTextBox5.Size = new Size(148, 28);
-            uiTextBox5.TabIndex = 69;
-            uiTextBox5.TextAlignment = ContentAlignment.MiddleLeft;
-            uiTextBox5.Watermark = "请输入";
+            txtMakeNumber.BackColor = Color.Transparent;
+            txtMakeNumber.FillColor = Color.FromArgb(218, 220, 230);
+            txtMakeNumber.FillColor2 = Color.FromArgb(218, 220, 230);
+            txtMakeNumber.FillDisableColor = Color.FromArgb(218, 220, 230);
+            txtMakeNumber.FillReadOnlyColor = Color.FromArgb(218, 220, 230);
+            txtMakeNumber.Font = new Font("微软雅黑", 11F, FontStyle.Bold);
+            txtMakeNumber.Location = new Point(90, 215);
+            txtMakeNumber.Margin = new Padding(4, 5, 4, 5);
+            txtMakeNumber.MinimumSize = new Size(1, 16);
+            txtMakeNumber.Name = "txtMakeNumber";
+            txtMakeNumber.Padding = new Padding(5);
+            txtMakeNumber.Radius = 15;
+            txtMakeNumber.RectColor = Color.FromArgb(218, 220, 230);
+            txtMakeNumber.RectDisableColor = Color.FromArgb(218, 220, 230);
+            txtMakeNumber.RectReadOnlyColor = Color.FromArgb(218, 220, 230);
+            txtMakeNumber.ShowText = false;
+            txtMakeNumber.Size = new Size(148, 28);
+            txtMakeNumber.TabIndex = 69;
+            txtMakeNumber.TextAlignment = ContentAlignment.MiddleLeft;
+            txtMakeNumber.Watermark = "请输入";
             // 
             // uiLabel1
             // 
@@ -798,6 +798,7 @@ namespace MainUI
             RadioAuto.Size = new Size(118, 29);
             RadioAuto.TabIndex = 498;
             RadioAuto.Text = "自动控制";
+            RadioAuto.CheckedChanged += RadioAuto_CheckedChanged;
             // 
             // panelHand
             // 
@@ -1071,8 +1072,8 @@ namespace MainUI
         private UIPanel grpRainy;
         private Tabs tabs1;
         private UILabel uiLabel5;
-        private UITextBox uiTextBox5;
         private UILabel uiLabel1;
-        private UITextBox uiTextBox6;
+        private UITextBox txtMakeNumber;
+        private UITextBox txtRemarks;
     }
 }

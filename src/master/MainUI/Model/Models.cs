@@ -141,5 +141,17 @@ namespace MainUI.Model
         /// </summary>
         [Column(StringLength = 100)]
         public string ModelTypeName { get; set; }
+
+        /// <summary>
+        /// 产品编号(制造编号)
+        /// </summary>
+        [Column(IsIgnore = true)]
+        public string MakeNumber { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Column(IsIgnore = true)]
+        public string Remarks { get; set; }
     }
 }

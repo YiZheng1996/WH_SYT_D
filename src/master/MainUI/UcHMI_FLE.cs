@@ -105,14 +105,14 @@ namespace MainUI.Procedure.User
             rbtDI.Clear();
             try
             {
-                foreach (var item in grpDI.Controls)
-                {
-                    if (item is UILedBulb)
-                    {
-                        UILedBulb sp = item as UILedBulb;
-                        rbtDI.Add(Convert.ToInt32(sp.Tag), sp);
-                    }
-                }
+                //foreach (var item in grpDI.Controls)
+                //{
+                //    if (item is UILedBulb)
+                //    {
+                //        UILedBulb sp = item as UILedBulb;
+                //        rbtDI.Add(Convert.ToInt32(sp.Tag), sp);
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -213,7 +213,8 @@ namespace MainUI.Procedure.User
                     {
                         LabVoltageOut.Value = fs.OutValue;
                         //TODO:由于未出点表，暂定CA02输出电压
-                        OPCHelper.AOgrp.CA02 = fs.OutValue;
+                        //20151118修改为CA02改为CA01
+                        OPCHelper.AOgrp.CA01 = fs.OutValue;
                     });
                 }
             }
@@ -237,7 +238,8 @@ namespace MainUI.Procedure.User
                     {
                         LabCurrentOut.Value = fs.OutValue;
                         //TODO:由于未出点表，暂定CA01输出电流
-                        OPCHelper.AOgrp.CA01 = fs.OutValue;
+                        //20151118修改为CA01改为CA02
+                        OPCHelper.AOgrp.CA02 = fs.OutValue;
                     });
                 }
             }
@@ -269,19 +271,19 @@ namespace MainUI.Procedure.User
             OPCHelper.DOgrp[Convert.ToInt32(pic.Tag)] = !pic.Active;
         }
 
-        private void uiSwitch1_MouseDown(object sender, MouseEventArgs e)
-        {
-            //if (rbnAuto.Checked)
-            //{
-            //    MessageBox.Show("当前为自动控制，无法进行手动操作，如需操作请切换至手动控制", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    return;
-            //}
-        }
-
         private void btnRequestTest_Click(object sender, EventArgs e)
         {
             FrmInsulationWithstand frm = new();
             VarHelper.ShowDialogWithOverlay(_form, frm);
+        }
+
+        private void uiSwitch2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (OPCHelper.TestCongrp[0].ToBool())
+            {
+                MessageHelper.MessageOK("当前为自动模式，请切换到手动模式后进行操作", AntdUI.TType.Info);
+                return;
+            }
         }
     }
 }

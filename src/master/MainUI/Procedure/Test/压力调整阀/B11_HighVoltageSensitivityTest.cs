@@ -11,11 +11,11 @@
             try
             {
                 // 供给灵敏度（高压)
-                // TODO:暂时没有报表
-                double MRPressure = 785 /*Read("SET1").ToDouble()*/; //MR路充气值
+                double MRPressure = Read("SYQY").ToDouble(); //MR路充气值
+                double TestVoltage = Read("GDDY").ToDouble(); //试验电压
 
                 BCRoadExhaust(true);  // BC电磁阀打开
-                VoltageOutput(100);   // 输出电压100V
+                VoltageOutput(TestVoltage);   // 输出电压
                 VoltageControl(false); // 电压输出关闭
                 VX06(true);
                 Delay(5);
@@ -35,8 +35,7 @@
                 double HighkPa = StartHighkPa - StopHighkPa; //x1
                 VX10(false);
 
-                //TODO:暂无报表
-                //Write("", HighkPa.ToString("f1"));
+                Write("val2", HighkPa.ToString("f1"));
 
                 // 排气灵敏度（高压）
                 Delay(20); //稳压
@@ -52,14 +51,12 @@
 
                 StopHighkPa = PE06();
                 double HighkPa2 = StartHighkPa - StopHighkPa; //Y1
-                //TODO:暂无报表
-                //Write("", HighkPa2.ToString("f1"));
+                Write("val3", HighkPa2.ToString("f1"));
 
                 // 滞后（高压）
                 VX07(false);
                 double YX = HighkPa - HighkPa2; // 滞后 Y1－X1
-                //TODO:暂无报表
-                //Write("", YX.ToString("f1"));
+                Write("val4", YX.ToString("f1"));
 
                 // 过度充气灵敏度（高压）
                 VX03(true);
@@ -74,8 +71,7 @@
 
                 Delay(10); //测定B通道压力稳定时的B通道压力
 
-                //TODO:暂无报表
-                //Write("", PE06().ToString("f1"));
+                Write("val5", PE06().ToString("f1"));
 
                 return true;
             }

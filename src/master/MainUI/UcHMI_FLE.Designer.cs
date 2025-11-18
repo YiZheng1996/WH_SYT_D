@@ -71,12 +71,10 @@
             uiPanel22 = new UIPanel();
             uiPanel21 = new UIPanel();
             LabVoltageOut = new UIDigitalLabel();
-            grpDI = new UIPanel();
-            uiLedBulb2 = new UILedBulb();
-            uiLedBulb1 = new UILedBulb();
-            uiLabel32 = new UILabel();
-            uiLabel33 = new UILabel();
             grpDO = new UIPanel();
+            uiSwitch3 = new UISwitch();
+            label10 = new Label();
+            btnRequestTest = new AntdUI.Button();
             uiSwitch2 = new UISwitch();
             label9 = new Label();
             uiSwitch1 = new UISwitch();
@@ -100,10 +98,7 @@
             LabPE08 = new UILabel();
             uiPipe36 = new UIPipe();
             uiPipe20 = new UIPipe();
-            uiPipe5 = new UIPipe();
-            uiPipe19 = new UIPipe();
             uiPipe21 = new UIPipe();
-            uiPanel4 = new UIPanel();
             uiPanel1 = new UIPanel();
             uiPanel6 = new UIPanel();
             uiPipe26 = new UIPipe();
@@ -137,8 +132,6 @@
             uiPipe15 = new UIPipe();
             uiValve3 = new UIValve();
             uiPipe16 = new UIPipe();
-            uiPipe17 = new UIPipe();
-            uiPipe22 = new UIPipe();
             uiPanel2 = new UIPanel();
             uiPanel13 = new UIPanel();
             label6 = new AntdUI.Label();
@@ -153,13 +146,11 @@
             uiPanel14 = new UIPanel();
             uiPanel15 = new UIPanel();
             LabCurrentOut = new UIDigitalLabel();
-            btnRequestTest = new AntdUI.Button();
             uiPanel11.SuspendLayout();
             uiPanel20.SuspendLayout();
             uiPanel9.SuspendLayout();
             panel1.SuspendLayout();
             uiPanel21.SuspendLayout();
-            grpDI.SuspendLayout();
             grpDO.SuspendLayout();
             uiPanel24.SuspendLayout();
             uiPanel7.SuspendLayout();
@@ -174,7 +165,7 @@
             // 
             uiPanel3.FillColor = Color.White;
             uiPanel3.Font = new Font("微软雅黑", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            uiPanel3.Location = new Point(699, 516);
+            uiPanel3.Location = new Point(662, 626);
             uiPanel3.Margin = new Padding(4, 5, 4, 5);
             uiPanel3.MinimumSize = new Size(1, 1);
             uiPanel3.Name = "uiPanel3";
@@ -184,12 +175,13 @@
             uiPanel3.TabIndex = 574;
             uiPanel3.Text = "EP01";
             uiPanel3.TextAlignment = ContentAlignment.MiddleCenter;
+            uiPanel3.MouseDown += uiSwitch2_MouseDown;
             // 
             // EP01
             // 
             EP01.FillColor = Color.White;
             EP01.Font = new Font("微软雅黑", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            EP01.Location = new Point(699, 534);
+            EP01.Location = new Point(662, 644);
             EP01.Margin = new Padding(4, 5, 4, 5);
             EP01.MinimumSize = new Size(1, 1);
             EP01.Name = "EP01";
@@ -201,6 +193,7 @@
             EP01.Text = "0";
             EP01.TextAlignment = ContentAlignment.MiddleCenter;
             EP01.Click += TimeSetting_Click;
+            EP01.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiPanel11
             // 
@@ -214,7 +207,7 @@
             uiPanel11.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiPanel11.ForeColor = Color.Black;
             uiPanel11.ForeDisableColor = Color.Black;
-            uiPanel11.Location = new Point(129, 221);
+            uiPanel11.Location = new Point(129, 224);
             uiPanel11.Margin = new Padding(4, 5, 4, 5);
             uiPanel11.MinimumSize = new Size(1, 1);
             uiPanel11.Name = "uiPanel11";
@@ -266,7 +259,7 @@
             // 
             uiPipe10.Direction = UILine.LineDirection.Vertical;
             uiPipe10.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe10.Location = new Point(173, 262);
+            uiPipe10.Location = new Point(173, 265);
             uiPipe10.MinimumSize = new Size(1, 1);
             uiPipe10.Name = "uiPipe10";
             uiPipe10.Radius = 12;
@@ -290,7 +283,7 @@
             uiPanel20.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiPanel20.ForeColor = Color.Black;
             uiPanel20.ForeDisableColor = Color.Black;
-            uiPanel20.Location = new Point(143, 562);
+            uiPanel20.Location = new Point(143, 565);
             uiPanel20.Margin = new Padding(4, 5, 4, 5);
             uiPanel20.MinimumSize = new Size(1, 1);
             uiPanel20.Name = "uiPanel20";
@@ -350,7 +343,7 @@
             uiPanel9.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiPanel9.ForeColor = Color.Black;
             uiPanel9.ForeDisableColor = Color.Black;
-            uiPanel9.Location = new Point(162, 31);
+            uiPanel9.Location = new Point(162, 34);
             uiPanel9.Margin = new Padding(4, 5, 4, 5);
             uiPanel9.MinimumSize = new Size(1, 1);
             uiPanel9.Name = "uiPanel9";
@@ -401,38 +394,40 @@
             // DCFVX05
             // 
             DCFVX05.Direction = UIValve.UIValveDirection.Top;
-            DCFVX05.Location = new Point(296, 425);
+            DCFVX05.Location = new Point(296, 428);
             DCFVX05.Name = "DCFVX05";
             DCFVX05.PipeSize = 15;
             DCFVX05.RectColor = Color.Gray;
             DCFVX05.Size = new Size(60, 60);
             DCFVX05.TabIndex = 560;
-            DCFVX05.Tag = "5";
+            DCFVX05.Tag = "12";
             DCFVX05.Text = "uiValve1";
             DCFVX05.ValveColor = Color.Gray;
             DCFVX05.ZoomScaleDisabled = true;
             DCFVX05.ActiveChanged += DCF_ActiveChanged;
+            DCFVX05.MouseDown += uiSwitch2_MouseDown;
             // 
             // DCFVX08
             // 
             DCFVX08.Direction = UIValve.UIValveDirection.Top;
-            DCFVX08.Location = new Point(241, 274);
+            DCFVX08.Location = new Point(241, 277);
             DCFVX08.Name = "DCFVX08";
             DCFVX08.PipeSize = 15;
             DCFVX08.RectColor = Color.Gray;
             DCFVX08.Size = new Size(60, 60);
             DCFVX08.TabIndex = 561;
-            DCFVX08.Tag = "8";
+            DCFVX08.Tag = "15";
             DCFVX08.Text = "uiValve1";
             DCFVX08.ValveColor = Color.Gray;
             DCFVX08.ZoomScaleDisabled = true;
             DCFVX08.ActiveChanged += DCF_ActiveChanged;
+            DCFVX08.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiPipe32
             // 
             uiPipe32.Direction = UILine.LineDirection.Vertical;
             uiPipe32.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe32.Location = new Point(182, 560);
+            uiPipe32.Location = new Point(182, 563);
             uiPipe32.MinimumSize = new Size(1, 1);
             uiPipe32.Name = "uiPipe32";
             uiPipe32.Radius = 10;
@@ -446,53 +441,56 @@
             // DCFVX02
             // 
             DCFVX02.Direction = UIValve.UIValveDirection.Top;
-            DCFVX02.Location = new Point(363, 610);
+            DCFVX02.Location = new Point(363, 613);
             DCFVX02.Name = "DCFVX02";
             DCFVX02.PipeSize = 15;
             DCFVX02.RectColor = Color.Gray;
             DCFVX02.Size = new Size(60, 60);
             DCFVX02.TabIndex = 564;
-            DCFVX02.Tag = "2";
+            DCFVX02.Tag = "9";
             DCFVX02.Text = "uiValve1";
             DCFVX02.ValveColor = Color.Gray;
             DCFVX02.ZoomScaleDisabled = true;
             DCFVX02.ActiveChanged += DCF_ActiveChanged;
+            DCFVX02.MouseDown += uiSwitch2_MouseDown;
             // 
             // DCFVX03
             // 
             DCFVX03.Direction = UIValve.UIValveDirection.Top;
-            DCFVX03.Location = new Point(242, 609);
+            DCFVX03.Location = new Point(242, 612);
             DCFVX03.Name = "DCFVX03";
             DCFVX03.PipeSize = 15;
             DCFVX03.RectColor = Color.Gray;
             DCFVX03.Size = new Size(60, 60);
             DCFVX03.TabIndex = 567;
-            DCFVX03.Tag = "3";
+            DCFVX03.Tag = "10";
             DCFVX03.Text = "uiValve1";
             DCFVX03.ValveColor = Color.Gray;
             DCFVX03.ZoomScaleDisabled = true;
             DCFVX03.ActiveChanged += DCF_ActiveChanged;
+            DCFVX03.MouseDown += uiSwitch2_MouseDown;
             // 
             // DCFVX10
             // 
             DCFVX10.Direction = UIValve.UIValveDirection.Top;
-            DCFVX10.Location = new Point(418, 211);
+            DCFVX10.Location = new Point(418, 214);
             DCFVX10.Name = "DCFVX10";
             DCFVX10.PipeSize = 15;
             DCFVX10.RectColor = Color.Gray;
             DCFVX10.Size = new Size(60, 60);
             DCFVX10.TabIndex = 572;
-            DCFVX10.Tag = "10";
+            DCFVX10.Tag = "17";
             DCFVX10.Text = "uiValve1";
             DCFVX10.ValveColor = Color.Gray;
             DCFVX10.ZoomScaleDisabled = true;
             DCFVX10.ActiveChanged += DCF_ActiveChanged;
+            DCFVX10.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiPipe31
             // 
             uiPipe31.Direction = UILine.LineDirection.Vertical;
             uiPipe31.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe31.Location = new Point(186, 592);
+            uiPipe31.Location = new Point(186, 595);
             uiPipe31.MinimumSize = new Size(1, 1);
             uiPipe31.Name = "uiPipe31";
             uiPipe31.Radius = 12;
@@ -508,7 +506,7 @@
             // 
             uiPipe8.Direction = UILine.LineDirection.Vertical;
             uiPipe8.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe8.Location = new Point(206, 76);
+            uiPipe8.Location = new Point(206, 79);
             uiPipe8.MinimumSize = new Size(1, 1);
             uiPipe8.Name = "uiPipe8";
             uiPipe8.Radius = 12;
@@ -525,7 +523,7 @@
             uiLabel12.AutoSize = true;
             uiLabel12.Font = new Font("微软雅黑", 12F, FontStyle.Bold);
             uiLabel12.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel12.Location = new Point(12, 642);
+            uiLabel12.Location = new Point(12, 645);
             uiLabel12.Name = "uiLabel12";
             uiLabel12.Size = new Size(93, 22);
             uiLabel12.TabIndex = 586;
@@ -536,7 +534,7 @@
             uiLabel11.AutoSize = true;
             uiLabel11.Font = new Font("微软雅黑", 12F, FontStyle.Bold);
             uiLabel11.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel11.Location = new Point(17, 459);
+            uiLabel11.Location = new Point(17, 462);
             uiLabel11.Name = "uiLabel11";
             uiLabel11.Size = new Size(85, 22);
             uiLabel11.TabIndex = 587;
@@ -560,7 +558,7 @@
             panel1.Controls.Add(uiLabel8);
             panel1.Controls.Add(uiLabel6);
             panel1.Controls.Add(uiLabel10);
-            panel1.Location = new Point(10, 52);
+            panel1.Location = new Point(10, 55);
             panel1.Name = "panel1";
             panel1.Size = new Size(96, 655);
             panel1.TabIndex = 596;
@@ -601,7 +599,7 @@
             // uiPipe4
             // 
             uiPipe4.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe4.Location = new Point(104, 116);
+            uiPipe4.Location = new Point(104, 119);
             uiPipe4.MinimumSize = new Size(1, 1);
             uiPipe4.Name = "uiPipe4";
             uiPipe4.Radius = 12;
@@ -617,7 +615,7 @@
             // uiPipe28
             // 
             uiPipe28.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe28.Location = new Point(94, 648);
+            uiPipe28.Location = new Point(94, 651);
             uiPipe28.MinimumSize = new Size(1, 1);
             uiPipe28.Name = "uiPipe28";
             uiPipe28.Radius = 12;
@@ -633,7 +631,7 @@
             // uiPipe18
             // 
             uiPipe18.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe18.Location = new Point(94, 464);
+            uiPipe18.Location = new Point(94, 467);
             uiPipe18.MinimumSize = new Size(1, 1);
             uiPipe18.Name = "uiPipe18";
             uiPipe18.Radius = 12;
@@ -649,7 +647,7 @@
             // uiPipe1
             // 
             uiPipe1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe1.Location = new Point(104, 313);
+            uiPipe1.Location = new Point(104, 316);
             uiPipe1.MinimumSize = new Size(1, 1);
             uiPipe1.Name = "uiPipe1";
             uiPipe1.Radius = 12;
@@ -668,7 +666,7 @@
             uiLabel1.BorderStyle = BorderStyle.FixedSingle;
             uiLabel1.Font = new Font("微软雅黑", 13F, FontStyle.Bold);
             uiLabel1.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel1.Location = new Point(828, 665);
+            uiLabel1.Location = new Point(828, 668);
             uiLabel1.Name = "uiLabel1";
             uiLabel1.Size = new Size(50, 27);
             uiLabel1.TabIndex = 588;
@@ -678,7 +676,7 @@
             // 
             uiPipe29.Direction = UILine.LineDirection.Vertical;
             uiPipe29.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe29.Location = new Point(368, 249);
+            uiPipe29.Location = new Point(368, 252);
             uiPipe29.MinimumSize = new Size(1, 1);
             uiPipe29.Name = "uiPipe29";
             uiPipe29.Radius = 12;
@@ -694,7 +692,7 @@
             // uiPipe3
             // 
             uiPipe3.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe3.Location = new Point(735, 648);
+            uiPipe3.Location = new Point(735, 651);
             uiPipe3.MinimumSize = new Size(1, 1);
             uiPipe3.Name = "uiPipe3";
             uiPipe3.Radius = 12;
@@ -711,7 +709,7 @@
             // 
             uiPipe9.Direction = UILine.LineDirection.Vertical;
             uiPipe9.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe9.Location = new Point(547, 135);
+            uiPipe9.Location = new Point(547, 138);
             uiPipe9.MinimumSize = new Size(1, 1);
             uiPipe9.Name = "uiPipe9";
             uiPipe9.Radius = 12;
@@ -727,7 +725,7 @@
             // uiPipe30
             // 
             uiPipe30.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe30.Location = new Point(377, 249);
+            uiPipe30.Location = new Point(377, 252);
             uiPipe30.MinimumSize = new Size(1, 1);
             uiPipe30.Name = "uiPipe30";
             uiPipe30.Radius = 12;
@@ -743,7 +741,7 @@
             // uiPipe12
             // 
             uiPipe12.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe12.Location = new Point(555, 200);
+            uiPipe12.Location = new Point(555, 203);
             uiPipe12.MinimumSize = new Size(1, 1);
             uiPipe12.Name = "uiPipe12";
             uiPipe12.Radius = 12;
@@ -767,9 +765,10 @@
             uiPanel22.RectColor = Color.FromArgb(65, 100, 204);
             uiPanel22.Size = new Size(113, 31);
             uiPanel22.TabIndex = 600;
-            uiPanel22.Text = "电压调节(V)";
+            uiPanel22.Text = "160V电压调节";
             uiPanel22.TextAlignment = ContentAlignment.MiddleCenter;
             uiPanel22.Click += LabVoltageOut_ValueChanged;
+            uiPanel22.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiPanel21
             // 
@@ -802,75 +801,13 @@
             LabVoltageOut.Text = "uiDigitalLabel1";
             LabVoltageOut.TextAlign = HorizontalAlignment.Center;
             LabVoltageOut.Click += LabVoltageOut_ValueChanged;
-            // 
-            // grpDI
-            // 
-            grpDI.Controls.Add(uiLedBulb2);
-            grpDI.Controls.Add(uiLedBulb1);
-            grpDI.Controls.Add(uiLabel32);
-            grpDI.Controls.Add(uiLabel33);
-            grpDI.FillColor = Color.White;
-            grpDI.FillColor2 = Color.White;
-            grpDI.FillDisableColor = Color.White;
-            grpDI.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            grpDI.Location = new Point(251, 766);
-            grpDI.Margin = new Padding(4, 5, 4, 5);
-            grpDI.MinimumSize = new Size(1, 1);
-            grpDI.Name = "grpDI";
-            grpDI.Radius = 30;
-            grpDI.RectColor = Color.White;
-            grpDI.RectDisableColor = Color.White;
-            grpDI.Size = new Size(294, 79);
-            grpDI.TabIndex = 597;
-            grpDI.Text = null;
-            grpDI.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
-            // uiLedBulb2
-            // 
-            uiLedBulb2.BackColor = Color.White;
-            uiLedBulb2.Location = new Point(183, 15);
-            uiLedBulb2.Name = "uiLedBulb2";
-            uiLedBulb2.On = false;
-            uiLedBulb2.Size = new Size(36, 37);
-            uiLedBulb2.TabIndex = 601;
-            uiLedBulb2.Tag = "11";
-            uiLedBulb2.Text = "uiLedBulb1";
-            // 
-            // uiLedBulb1
-            // 
-            uiLedBulb1.BackColor = Color.White;
-            uiLedBulb1.Location = new Point(53, 13);
-            uiLedBulb1.Name = "uiLedBulb1";
-            uiLedBulb1.On = false;
-            uiLedBulb1.Size = new Size(36, 37);
-            uiLedBulb1.TabIndex = 601;
-            uiLedBulb1.Tag = "10";
-            uiLedBulb1.Text = "uiLedBulb1";
-            // 
-            // uiLabel32
-            // 
-            uiLabel32.BackColor = Color.White;
-            uiLabel32.Font = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiLabel32.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel32.Location = new Point(10, 53);
-            uiLabel32.Name = "uiLabel32";
-            uiLabel32.Size = new Size(129, 17);
-            uiLabel32.TabIndex = 515;
-            uiLabel32.Text = "压力开关电源控制检测";
-            // 
-            // uiLabel33
-            // 
-            uiLabel33.BackColor = Color.White;
-            uiLabel33.Font = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiLabel33.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel33.Location = new Point(145, 53);
-            uiLabel33.Name = "uiLabel33";
-            uiLabel33.Size = new Size(129, 17);
-            uiLabel33.TabIndex = 515;
-            uiLabel33.Text = "电磁阀电源控制检测";
+            LabVoltageOut.MouseDown += uiSwitch2_MouseDown;
             // 
             // grpDO
             // 
+            grpDO.Controls.Add(uiSwitch3);
+            grpDO.Controls.Add(label10);
+            grpDO.Controls.Add(btnRequestTest);
             grpDO.Controls.Add(uiSwitch2);
             grpDO.Controls.Add(label9);
             grpDO.Controls.Add(uiSwitch1);
@@ -881,17 +818,62 @@
             grpDO.FillColor2 = Color.White;
             grpDO.FillDisableColor = Color.White;
             grpDO.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            grpDO.Location = new Point(550, 766);
+            grpDO.Location = new Point(251, 766);
             grpDO.Margin = new Padding(4, 5, 4, 5);
             grpDO.MinimumSize = new Size(1, 1);
             grpDO.Name = "grpDO";
             grpDO.Radius = 30;
             grpDO.RectColor = Color.White;
             grpDO.RectDisableColor = Color.White;
-            grpDO.Size = new Size(334, 77);
+            grpDO.Size = new Size(633, 77);
             grpDO.TabIndex = 598;
             grpDO.Text = null;
             grpDO.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch3
+            // 
+            uiSwitch3.ActiveColor = Color.LimeGreen;
+            uiSwitch3.BackColor = Color.Transparent;
+            uiSwitch3.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
+            uiSwitch3.ForeColor = Color.FromArgb(235, 227, 221);
+            uiSwitch3.InActiveColor = Color.FromArgb(231, 54, 36);
+            uiSwitch3.Location = new Point(388, 15);
+            uiSwitch3.MinimumSize = new Size(1, 1);
+            uiSwitch3.MultiLanguageSupport = false;
+            uiSwitch3.Name = "uiSwitch3";
+            uiSwitch3.Radius = 30;
+            uiSwitch3.Size = new Size(72, 31);
+            uiSwitch3.SwitchShape = UISwitch.UISwitchShape.Square;
+            uiSwitch3.TabIndex = 665;
+            uiSwitch3.Tag = "22";
+            uiSwitch3.TagString = "";
+            uiSwitch3.Text = "123";
+            uiSwitch3.Click += DO_Click;
+            uiSwitch3.MouseDown += uiSwitch2_MouseDown;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("微软雅黑", 12F);
+            label10.ForeColor = Color.FromArgb(64, 64, 64);
+            label10.Location = new Point(371, 51);
+            label10.Name = "label10";
+            label10.Size = new Size(106, 21);
+            label10.TabIndex = 666;
+            label10.Tag = "7";
+            label10.Text = "电阻合闸测试";
+            // 
+            // btnRequestTest
+            // 
+            btnRequestTest.Font = new Font("Microsoft YaHei UI", 10F);
+            btnRequestTest.Location = new Point(511, 9);
+            btnRequestTest.Name = "btnRequestTest";
+            btnRequestTest.Size = new Size(109, 59);
+            btnRequestTest.TabIndex = 664;
+            btnRequestTest.Text = "绝缘耐压界面";
+            btnRequestTest.Type = AntdUI.TTypeMini.Primary;
+            btnRequestTest.Click += btnRequestTest_Click;
             // 
             // uiSwitch2
             // 
@@ -900,7 +882,7 @@
             uiSwitch2.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
             uiSwitch2.ForeColor = Color.FromArgb(235, 227, 221);
             uiSwitch2.InActiveColor = Color.FromArgb(231, 54, 36);
-            uiSwitch2.Location = new Point(235, 15);
+            uiSwitch2.Location = new Point(271, 15);
             uiSwitch2.MinimumSize = new Size(1, 1);
             uiSwitch2.MultiLanguageSupport = false;
             uiSwitch2.Name = "uiSwitch2";
@@ -908,10 +890,11 @@
             uiSwitch2.Size = new Size(72, 31);
             uiSwitch2.SwitchShape = UISwitch.UISwitchShape.Square;
             uiSwitch2.TabIndex = 17;
-            uiSwitch2.Tag = "22";
+            uiSwitch2.Tag = "6";
             uiSwitch2.TagString = "";
             uiSwitch2.Text = "123";
             uiSwitch2.Click += DO_Click;
+            uiSwitch2.MouseDown += uiSwitch2_MouseDown;
             // 
             // label9
             // 
@@ -919,11 +902,11 @@
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("微软雅黑", 12F);
             label9.ForeColor = Color.FromArgb(64, 64, 64);
-            label9.Location = new Point(223, 53);
+            label9.Location = new Point(269, 51);
             label9.Name = "label9";
-            label9.Size = new Size(106, 21);
+            label9.Size = new Size(71, 21);
             label9.TabIndex = 18;
-            label9.Text = "绝缘耐压切换";
+            label9.Text = "36V供电";
             // 
             // uiSwitch1
             // 
@@ -932,7 +915,7 @@
             uiSwitch1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
             uiSwitch1.ForeColor = Color.FromArgb(235, 227, 221);
             uiSwitch1.InActiveColor = Color.FromArgb(231, 54, 36);
-            uiSwitch1.Location = new Point(130, 15);
+            uiSwitch1.Location = new Point(154, 15);
             uiSwitch1.MinimumSize = new Size(1, 1);
             uiSwitch1.MultiLanguageSupport = false;
             uiSwitch1.Name = "uiSwitch1";
@@ -940,10 +923,11 @@
             uiSwitch1.Size = new Size(72, 31);
             uiSwitch1.SwitchShape = UISwitch.UISwitchShape.Square;
             uiSwitch1.TabIndex = 17;
-            uiSwitch1.Tag = "21";
+            uiSwitch1.Tag = "5";
             uiSwitch1.TagString = "";
             uiSwitch1.Text = "123";
             uiSwitch1.Click += DO_Click;
+            uiSwitch1.MouseDown += uiSwitch2_MouseDown;
             // 
             // label8
             // 
@@ -951,11 +935,11 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("微软雅黑", 12F);
             label8.ForeColor = Color.FromArgb(64, 64, 64);
-            label8.Location = new Point(118, 53);
+            label8.Location = new Point(154, 51);
             label8.Name = "label8";
-            label8.Size = new Size(106, 21);
+            label8.Size = new Size(74, 21);
             label8.TabIndex = 18;
-            label8.Text = "压力开关电源";
+            label8.Text = "耐压合闸";
             // 
             // uiSwitch
             // 
@@ -964,7 +948,7 @@
             uiSwitch.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
             uiSwitch.ForeColor = Color.FromArgb(235, 227, 221);
             uiSwitch.InActiveColor = Color.FromArgb(231, 54, 36);
-            uiSwitch.Location = new Point(25, 15);
+            uiSwitch.Location = new Point(37, 15);
             uiSwitch.MinimumSize = new Size(1, 1);
             uiSwitch.MultiLanguageSupport = false;
             uiSwitch.Name = "uiSwitch";
@@ -972,10 +956,11 @@
             uiSwitch.Size = new Size(72, 31);
             uiSwitch.SwitchShape = UISwitch.UISwitchShape.Square;
             uiSwitch.TabIndex = 17;
-            uiSwitch.Tag = "20";
+            uiSwitch.Tag = "4";
             uiSwitch.TagString = "";
             uiSwitch.Text = "123";
             uiSwitch.Click += DO_Click;
+            uiSwitch.MouseDown += uiSwitch2_MouseDown;
             // 
             // label19
             // 
@@ -983,18 +968,18 @@
             label19.BackColor = Color.Transparent;
             label19.Font = new Font("微软雅黑", 12F);
             label19.ForeColor = Color.FromArgb(64, 64, 64);
-            label19.Location = new Point(18, 53);
+            label19.Location = new Point(32, 51);
             label19.Name = "label19";
-            label19.Size = new Size(90, 21);
+            label19.Size = new Size(80, 21);
             label19.TabIndex = 18;
-            label19.Text = "电磁阀电源";
+            label19.Text = "160V供电";
             // 
             // uiLabel7
             // 
             uiLabel7.AutoSize = true;
             uiLabel7.Font = new Font("微软雅黑", 10F);
             uiLabel7.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel7.Location = new Point(372, 664);
+            uiLabel7.Location = new Point(372, 667);
             uiLabel7.Name = "uiLabel7";
             uiLabel7.Size = new Size(43, 20);
             uiLabel7.TabIndex = 592;
@@ -1005,7 +990,7 @@
             uiLabel35.AutoSize = true;
             uiLabel35.Font = new Font("微软雅黑", 10F);
             uiLabel35.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel35.Location = new Point(251, 663);
+            uiLabel35.Location = new Point(251, 666);
             uiLabel35.Name = "uiLabel35";
             uiLabel35.Size = new Size(43, 20);
             uiLabel35.TabIndex = 592;
@@ -1016,7 +1001,7 @@
             uiLabel37.AutoSize = true;
             uiLabel37.Font = new Font("微软雅黑", 10F);
             uiLabel37.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel37.Location = new Point(419, 264);
+            uiLabel37.Location = new Point(419, 267);
             uiLabel37.Name = "uiLabel37";
             uiLabel37.Size = new Size(67, 20);
             uiLabel37.TabIndex = 592;
@@ -1027,7 +1012,7 @@
             uiLabel39.AutoSize = true;
             uiLabel39.Font = new Font("微软雅黑", 10F);
             uiLabel39.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel39.Location = new Point(305, 482);
+            uiLabel39.Location = new Point(305, 485);
             uiLabel39.Name = "uiLabel39";
             uiLabel39.Size = new Size(43, 20);
             uiLabel39.TabIndex = 589;
@@ -1038,7 +1023,7 @@
             uiLabel40.AutoSize = true;
             uiLabel40.Font = new Font("微软雅黑", 10F);
             uiLabel40.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel40.Location = new Point(248, 327);
+            uiLabel40.Location = new Point(248, 330);
             uiLabel40.Name = "uiLabel40";
             uiLabel40.Size = new Size(43, 20);
             uiLabel40.TabIndex = 589;
@@ -1049,7 +1034,7 @@
             uiLabel41.AutoSize = true;
             uiLabel41.Font = new Font("微软雅黑", 10F);
             uiLabel41.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel41.Location = new Point(320, 129);
+            uiLabel41.Location = new Point(320, 132);
             uiLabel41.Name = "uiLabel41";
             uiLabel41.Size = new Size(43, 20);
             uiLabel41.TabIndex = 589;
@@ -1067,7 +1052,7 @@
             uiPanel24.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiPanel24.ForeColor = Color.Black;
             uiPanel24.ForeDisableColor = Color.Black;
-            uiPanel24.Location = new Point(787, 549);
+            uiPanel24.Location = new Point(787, 552);
             uiPanel24.Margin = new Padding(4, 5, 4, 5);
             uiPanel24.MinimumSize = new Size(1, 1);
             uiPanel24.Name = "uiPanel24";
@@ -1119,7 +1104,7 @@
             // 
             uiPipe33.Direction = UILine.LineDirection.Vertical;
             uiPipe33.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe33.Location = new Point(832, 556);
+            uiPipe33.Location = new Point(832, 559);
             uiPipe33.MinimumSize = new Size(1, 1);
             uiPipe33.Name = "uiPipe33";
             uiPipe33.Radius = 12;
@@ -1143,7 +1128,7 @@
             uiPanel7.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiPanel7.ForeColor = Color.Black;
             uiPanel7.ForeDisableColor = Color.Black;
-            uiPanel7.Location = new Point(718, 28);
+            uiPanel7.Location = new Point(718, 31);
             uiPanel7.Margin = new Padding(4, 5, 4, 5);
             uiPanel7.MinimumSize = new Size(1, 1);
             uiPanel7.Name = "uiPanel7";
@@ -1195,7 +1180,7 @@
             // 
             uiPipe36.Direction = UILine.LineDirection.Vertical;
             uiPipe36.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe36.Location = new Point(763, 84);
+            uiPipe36.Location = new Point(763, 87);
             uiPipe36.MinimumSize = new Size(1, 1);
             uiPipe36.Name = "uiPipe36";
             uiPipe36.Radius = 10;
@@ -1210,7 +1195,7 @@
             // uiPipe20
             // 
             uiPipe20.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe20.Location = new Point(675, 542);
+            uiPipe20.Location = new Point(674, 650);
             uiPipe20.MinimumSize = new Size(1, 1);
             uiPipe20.Name = "uiPipe20";
             uiPipe20.Radius = 12;
@@ -1222,45 +1207,11 @@
             uiPipe20.Text = "uiPipe20";
             uiPipe20.ZoomScaleDisabled = true;
             // 
-            // uiPipe5
-            // 
-            uiPipe5.Direction = UILine.LineDirection.Vertical;
-            uiPipe5.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe5.Location = new Point(768, 542);
-            uiPipe5.MinimumSize = new Size(1, 1);
-            uiPipe5.Name = "uiPipe5";
-            uiPipe5.Radius = 12;
-            uiPipe5.RadiusSides = UICornerRadiusSides.RightTop;
-            uiPipe5.RectColor = Color.Gray;
-            uiPipe5.Size = new Size(12, 91);
-            uiPipe5.Style = UIStyle.Custom;
-            uiPipe5.StyleCustomMode = true;
-            uiPipe5.TabIndex = 539;
-            uiPipe5.Text = "uiPipe1";
-            uiPipe5.ZoomScaleDisabled = true;
-            // 
-            // uiPipe19
-            // 
-            uiPipe19.Direction = UILine.LineDirection.Vertical;
-            uiPipe19.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe19.Location = new Point(670, 454);
-            uiPipe19.MinimumSize = new Size(1, 1);
-            uiPipe19.Name = "uiPipe19";
-            uiPipe19.Radius = 12;
-            uiPipe19.RadiusSides = UICornerRadiusSides.RightBottom;
-            uiPipe19.RectColor = Color.Gray;
-            uiPipe19.Size = new Size(12, 206);
-            uiPipe19.Style = UIStyle.Custom;
-            uiPipe19.StyleCustomMode = true;
-            uiPipe19.TabIndex = 539;
-            uiPipe19.Text = "uiPipe1";
-            uiPipe19.ZoomScaleDisabled = true;
-            // 
             // uiPipe21
             // 
             uiPipe21.Direction = UILine.LineDirection.Vertical;
             uiPipe21.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe21.Location = new Point(368, 251);
+            uiPipe21.Location = new Point(368, 254);
             uiPipe21.MinimumSize = new Size(1, 1);
             uiPipe21.Name = "uiPipe21";
             uiPipe21.Radius = 12;
@@ -1272,27 +1223,6 @@
             uiPipe21.Text = "uiPipe1";
             uiPipe21.ZoomScaleDisabled = true;
             // 
-            // uiPanel4
-            // 
-            uiPanel4.BackColor = Color.Transparent;
-            uiPanel4.FillColor = Color.FromArgb(85, 131, 211);
-            uiPanel4.FillColor2 = Color.FromArgb(10, 63, 153);
-            uiPanel4.FillColorGradient = true;
-            uiPanel4.FillDisableColor = Color.White;
-            uiPanel4.Font = new Font("微软雅黑", 10.5F);
-            uiPanel4.ForeColor = Color.White;
-            uiPanel4.Location = new Point(701, 415);
-            uiPanel4.Margin = new Padding(4, 5, 4, 5);
-            uiPanel4.MinimumSize = new Size(1, 1);
-            uiPanel4.Name = "uiPanel4";
-            uiPanel4.Radius = 37;
-            uiPanel4.RectColor = Color.FromArgb(85, 131, 211);
-            uiPanel4.RectDisableColor = Color.FromArgb(85, 131, 211);
-            uiPanel4.Size = new Size(80, 45);
-            uiPanel4.TabIndex = 624;
-            uiPanel4.Text = "C02 0.5L";
-            uiPanel4.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
             // uiPanel1
             // 
             uiPanel1.BackColor = Color.Transparent;
@@ -1302,7 +1232,7 @@
             uiPanel1.FillDisableColor = Color.White;
             uiPanel1.Font = new Font("微软雅黑", 10.5F);
             uiPanel1.ForeColor = Color.White;
-            uiPanel1.Location = new Point(728, 101);
+            uiPanel1.Location = new Point(728, 104);
             uiPanel1.Margin = new Padding(4, 5, 4, 5);
             uiPanel1.MinimumSize = new Size(1, 1);
             uiPanel1.Name = "uiPanel1";
@@ -1323,7 +1253,7 @@
             uiPanel6.FillDisableColor = Color.White;
             uiPanel6.Font = new Font("微软雅黑", 10.5F);
             uiPanel6.ForeColor = Color.White;
-            uiPanel6.Location = new Point(725, 627);
+            uiPanel6.Location = new Point(732, 630);
             uiPanel6.Margin = new Padding(4, 5, 4, 5);
             uiPanel6.MinimumSize = new Size(1, 1);
             uiPanel6.Name = "uiPanel6";
@@ -1339,7 +1269,7 @@
             // 
             uiPipe26.Direction = UILine.LineDirection.Vertical;
             uiPipe26.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe26.Location = new Point(547, 120);
+            uiPipe26.Location = new Point(547, 123);
             uiPipe26.MinimumSize = new Size(1, 1);
             uiPipe26.Name = "uiPipe26";
             uiPipe26.Radius = 12;
@@ -1356,7 +1286,7 @@
             uiLabel14.AutoSize = true;
             uiLabel14.Font = new Font("微软雅黑", 10F);
             uiLabel14.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel14.Location = new Point(631, 215);
+            uiLabel14.Location = new Point(631, 218);
             uiLabel14.Name = "uiLabel14";
             uiLabel14.Size = new Size(43, 20);
             uiLabel14.TabIndex = 632;
@@ -1365,17 +1295,18 @@
             // DCFVX11
             // 
             DCFVX11.Direction = UIValve.UIValveDirection.Top;
-            DCFVX11.Location = new Point(622, 161);
+            DCFVX11.Location = new Point(622, 164);
             DCFVX11.Name = "DCFVX11";
             DCFVX11.PipeSize = 15;
             DCFVX11.RectColor = Color.Gray;
             DCFVX11.Size = new Size(60, 60);
             DCFVX11.TabIndex = 631;
-            DCFVX11.Tag = "11";
+            DCFVX11.Tag = "18";
             DCFVX11.Text = "uiValve1";
             DCFVX11.ValveColor = Color.Gray;
             DCFVX11.ZoomScaleDisabled = true;
             DCFVX11.ActiveChanged += DCF_ActiveChanged;
+            DCFVX11.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiPanel8
             // 
@@ -1389,7 +1320,7 @@
             uiPanel8.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiPanel8.ForeColor = Color.Black;
             uiPanel8.ForeDisableColor = Color.Black;
-            uiPanel8.Location = new Point(787, 469);
+            uiPanel8.Location = new Point(787, 472);
             uiPanel8.Margin = new Padding(4, 5, 4, 5);
             uiPanel8.MinimumSize = new Size(1, 1);
             uiPanel8.Name = "uiPanel8";
@@ -1440,17 +1371,18 @@
             // DCFVX12
             // 
             DCFVX12.Direction = UIValve.UIValveDirection.Top;
-            DCFVX12.Location = new Point(313, 77);
+            DCFVX12.Location = new Point(313, 80);
             DCFVX12.Name = "DCFVX12";
             DCFVX12.PipeSize = 15;
             DCFVX12.RectColor = Color.Gray;
             DCFVX12.Size = new Size(60, 60);
             DCFVX12.TabIndex = 562;
-            DCFVX12.Tag = "12";
+            DCFVX12.Tag = "19";
             DCFVX12.Text = "uiValve1";
             DCFVX12.ValveColor = Color.Gray;
             DCFVX12.ZoomScaleDisabled = true;
             DCFVX12.ActiveChanged += DCF_ActiveChanged;
+            DCFVX12.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiPanel10
             // 
@@ -1461,7 +1393,7 @@
             uiPanel10.FillDisableColor = Color.White;
             uiPanel10.Font = new Font("微软雅黑", 10.5F);
             uiPanel10.ForeColor = Color.White;
-            uiPanel10.Location = new Point(738, 294);
+            uiPanel10.Location = new Point(738, 297);
             uiPanel10.Margin = new Padding(4, 5, 4, 5);
             uiPanel10.MinimumSize = new Size(1, 1);
             uiPanel10.Name = "uiPanel10";
@@ -1485,7 +1417,7 @@
             uiPanel12.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiPanel12.ForeColor = Color.Black;
             uiPanel12.ForeDisableColor = Color.Black;
-            uiPanel12.Location = new Point(728, 221);
+            uiPanel12.Location = new Point(728, 224);
             uiPanel12.Margin = new Padding(4, 5, 4, 5);
             uiPanel12.MinimumSize = new Size(1, 1);
             uiPanel12.Name = "uiPanel12";
@@ -1537,7 +1469,7 @@
             // 
             uiPipe6.Direction = UILine.LineDirection.Vertical;
             uiPipe6.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe6.Location = new Point(773, 277);
+            uiPipe6.Location = new Point(773, 280);
             uiPipe6.MinimumSize = new Size(1, 1);
             uiPipe6.Name = "uiPipe6";
             uiPipe6.Radius = 10;
@@ -1554,7 +1486,7 @@
             uiLabel16.AutoSize = true;
             uiLabel16.Font = new Font("微软雅黑", 10F);
             uiLabel16.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel16.Location = new Point(631, 326);
+            uiLabel16.Location = new Point(631, 329);
             uiLabel16.Name = "uiLabel16";
             uiLabel16.Size = new Size(43, 20);
             uiLabel16.TabIndex = 638;
@@ -1563,38 +1495,40 @@
             // DCFVX09
             // 
             DCFVX09.Direction = UIValve.UIValveDirection.Top;
-            DCFVX09.Location = new Point(622, 274);
+            DCFVX09.Location = new Point(622, 277);
             DCFVX09.Name = "DCFVX09";
             DCFVX09.PipeSize = 15;
             DCFVX09.RectColor = Color.Gray;
             DCFVX09.Size = new Size(60, 60);
             DCFVX09.TabIndex = 637;
-            DCFVX09.Tag = "9";
+            DCFVX09.Tag = "16";
             DCFVX09.Text = "uiValve1";
             DCFVX09.ValveColor = Color.Gray;
             DCFVX09.ZoomScaleDisabled = true;
             DCFVX09.ActiveChanged += DCF_ActiveChanged;
+            DCFVX09.MouseDown += uiSwitch2_MouseDown;
             // 
             // DCFVX06
             // 
             DCFVX06.Direction = UIValve.UIValveDirection.Top;
-            DCFVX06.Location = new Point(418, 357);
+            DCFVX06.Location = new Point(418, 360);
             DCFVX06.Name = "DCFVX06";
             DCFVX06.PipeSize = 15;
             DCFVX06.RectColor = Color.Gray;
             DCFVX06.Size = new Size(60, 60);
             DCFVX06.TabIndex = 642;
-            DCFVX06.Tag = "6";
+            DCFVX06.Tag = "13";
             DCFVX06.Text = "uiValve1";
             DCFVX06.ValveColor = Color.Gray;
             DCFVX06.ZoomScaleDisabled = true;
             DCFVX06.ActiveChanged += DCF_ActiveChanged;
+            DCFVX06.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiPipe7
             // 
             uiPipe7.Direction = UILine.LineDirection.Vertical;
             uiPipe7.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe7.Location = new Point(368, 331);
+            uiPipe7.Location = new Point(368, 334);
             uiPipe7.MinimumSize = new Size(1, 1);
             uiPipe7.Name = "uiPipe7";
             uiPipe7.Radius = 12;
@@ -1611,7 +1545,7 @@
             // 
             uiPipe11.Direction = UILine.LineDirection.Vertical;
             uiPipe11.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe11.Location = new Point(368, 318);
+            uiPipe11.Location = new Point(368, 321);
             uiPipe11.MinimumSize = new Size(1, 1);
             uiPipe11.Name = "uiPipe11";
             uiPipe11.Radius = 12;
@@ -1626,7 +1560,7 @@
             // uiPipe13
             // 
             uiPipe13.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe13.Location = new Point(376, 396);
+            uiPipe13.Location = new Point(376, 399);
             uiPipe13.MinimumSize = new Size(1, 1);
             uiPipe13.Name = "uiPipe13";
             uiPipe13.Radius = 12;
@@ -1644,7 +1578,7 @@
             uiLabel18.AutoSize = true;
             uiLabel18.Font = new Font("微软雅黑", 10F);
             uiLabel18.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel18.Location = new Point(424, 411);
+            uiLabel18.Location = new Point(424, 414);
             uiLabel18.Name = "uiLabel18";
             uiLabel18.Size = new Size(43, 20);
             uiLabel18.TabIndex = 643;
@@ -1662,7 +1596,7 @@
             uiPanel5.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiPanel5.ForeColor = Color.Black;
             uiPanel5.ForeDisableColor = Color.Black;
-            uiPanel5.Location = new Point(164, 377);
+            uiPanel5.Location = new Point(164, 380);
             uiPanel5.Margin = new Padding(4, 5, 4, 5);
             uiPanel5.MinimumSize = new Size(1, 1);
             uiPanel5.Name = "uiPanel5";
@@ -1714,7 +1648,7 @@
             // 
             uiPipe14.Direction = UILine.LineDirection.Vertical;
             uiPipe14.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe14.Location = new Point(208, 415);
+            uiPipe14.Location = new Point(208, 418);
             uiPipe14.MinimumSize = new Size(1, 1);
             uiPipe14.Name = "uiPipe14";
             uiPipe14.Radius = 12;
@@ -1731,7 +1665,7 @@
             uiLabel4.AutoSize = true;
             uiLabel4.Font = new Font("微软雅黑", 10F);
             uiLabel4.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel4.Location = new Point(370, 575);
+            uiLabel4.Location = new Point(370, 578);
             uiLabel4.Name = "uiLabel4";
             uiLabel4.Size = new Size(43, 20);
             uiLabel4.TabIndex = 649;
@@ -1741,7 +1675,7 @@
             // 
             uiPipe2.Direction = UILine.LineDirection.Vertical;
             uiPipe2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe2.Location = new Point(330, 560);
+            uiPipe2.Location = new Point(330, 563);
             uiPipe2.MinimumSize = new Size(1, 1);
             uiPipe2.Name = "uiPipe2";
             uiPipe2.Radius = 12;
@@ -1758,7 +1692,7 @@
             // 
             uiPipe15.Direction = UILine.LineDirection.Vertical;
             uiPipe15.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe15.Location = new Point(330, 587);
+            uiPipe15.Location = new Point(330, 590);
             uiPipe15.MinimumSize = new Size(1, 1);
             uiPipe15.Name = "uiPipe15";
             uiPipe15.Radius = 12;
@@ -1773,22 +1707,23 @@
             // uiValve3
             // 
             uiValve3.Direction = UIValve.UIValveDirection.Top;
-            uiValve3.Location = new Point(363, 521);
+            uiValve3.Location = new Point(363, 524);
             uiValve3.Name = "uiValve3";
             uiValve3.PipeSize = 15;
             uiValve3.RectColor = Color.Gray;
             uiValve3.Size = new Size(60, 60);
             uiValve3.TabIndex = 648;
-            uiValve3.Tag = "4";
+            uiValve3.Tag = "11";
             uiValve3.Text = "uiValve1";
             uiValve3.ValveColor = Color.Gray;
             uiValve3.ZoomScaleDisabled = true;
             uiValve3.ActiveChanged += DCF_ActiveChanged;
+            uiValve3.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiPipe16
             // 
             uiPipe16.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe16.Location = new Point(338, 560);
+            uiPipe16.Location = new Point(338, 563);
             uiPipe16.MinimumSize = new Size(1, 1);
             uiPipe16.Name = "uiPipe16";
             uiPipe16.Radius = 12;
@@ -1801,39 +1736,6 @@
             uiPipe16.Text = "uiPipe1";
             uiPipe16.ZoomScaleDisabled = true;
             // 
-            // uiPipe17
-            // 
-            uiPipe17.Direction = UILine.LineDirection.Vertical;
-            uiPipe17.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe17.Location = new Point(670, 431);
-            uiPipe17.MinimumSize = new Size(1, 1);
-            uiPipe17.Name = "uiPipe17";
-            uiPipe17.Radius = 12;
-            uiPipe17.RadiusSides = UICornerRadiusSides.LeftTop;
-            uiPipe17.RectColor = Color.Gray;
-            uiPipe17.Size = new Size(12, 118);
-            uiPipe17.Style = UIStyle.Custom;
-            uiPipe17.StyleCustomMode = true;
-            uiPipe17.TabIndex = 651;
-            uiPipe17.Text = "uiPipe1";
-            uiPipe17.ZoomScaleDisabled = true;
-            // 
-            // uiPipe22
-            // 
-            uiPipe22.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe22.Location = new Point(680, 431);
-            uiPipe22.MinimumSize = new Size(1, 1);
-            uiPipe22.Name = "uiPipe22";
-            uiPipe22.Radius = 12;
-            uiPipe22.RadiusSides = UICornerRadiusSides.None;
-            uiPipe22.RectColor = Color.Gray;
-            uiPipe22.Size = new Size(84, 12);
-            uiPipe22.Style = UIStyle.Custom;
-            uiPipe22.StyleCustomMode = true;
-            uiPipe22.TabIndex = 652;
-            uiPipe22.Text = "uiPipe1";
-            uiPipe22.ZoomScaleDisabled = true;
-            // 
             // uiPanel2
             // 
             uiPanel2.BackColor = Color.Transparent;
@@ -1843,7 +1745,7 @@
             uiPanel2.FillDisableColor = Color.White;
             uiPanel2.Font = new Font("微软雅黑", 10.5F);
             uiPanel2.ForeColor = Color.White;
-            uiPanel2.Location = new Point(456, 629);
+            uiPanel2.Location = new Point(456, 632);
             uiPanel2.Margin = new Padding(4, 5, 4, 5);
             uiPanel2.MinimumSize = new Size(1, 1);
             uiPanel2.Name = "uiPanel2";
@@ -1867,7 +1769,7 @@
             uiPanel13.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiPanel13.ForeColor = Color.Black;
             uiPanel13.ForeDisableColor = Color.Black;
-            uiPanel13.Location = new Point(449, 556);
+            uiPanel13.Location = new Point(449, 559);
             uiPanel13.Margin = new Padding(4, 5, 4, 5);
             uiPanel13.MinimumSize = new Size(1, 1);
             uiPanel13.Name = "uiPanel13";
@@ -1919,7 +1821,7 @@
             // 
             uiPipe23.Direction = UILine.LineDirection.Vertical;
             uiPipe23.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe23.Location = new Point(494, 612);
+            uiPipe23.Location = new Point(494, 615);
             uiPipe23.MinimumSize = new Size(1, 1);
             uiPipe23.Name = "uiPipe23";
             uiPipe23.Radius = 10;
@@ -1936,7 +1838,7 @@
             uiLabel24.AutoSize = true;
             uiLabel24.Font = new Font("微软雅黑", 10F);
             uiLabel24.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel24.Location = new Point(606, 663);
+            uiLabel24.Location = new Point(599, 666);
             uiLabel24.Name = "uiLabel24";
             uiLabel24.Size = new Size(43, 20);
             uiLabel24.TabIndex = 657;
@@ -1945,23 +1847,24 @@
             // DCFVX01
             // 
             DCFVX01.Direction = UIValve.UIValveDirection.Top;
-            DCFVX01.Location = new Point(595, 609);
+            DCFVX01.Location = new Point(588, 612);
             DCFVX01.Name = "DCFVX01";
             DCFVX01.PipeSize = 15;
             DCFVX01.RectColor = Color.Gray;
             DCFVX01.Size = new Size(60, 60);
             DCFVX01.TabIndex = 656;
-            DCFVX01.Tag = "1";
+            DCFVX01.Tag = "8";
             DCFVX01.Text = "uiValve1";
             DCFVX01.ValveColor = Color.Gray;
             DCFVX01.ZoomScaleDisabled = true;
             DCFVX01.ActiveChanged += DCF_ActiveChanged;
+            DCFVX01.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiPipe24
             // 
             uiPipe24.Direction = UILine.LineDirection.Vertical;
             uiPipe24.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPipe24.Location = new Point(566, 318);
+            uiPipe24.Location = new Point(562, 321);
             uiPipe24.MinimumSize = new Size(1, 1);
             uiPipe24.Name = "uiPipe24";
             uiPipe24.Radius = 12;
@@ -1976,24 +1879,25 @@
             // DCFVX07
             // 
             DCFVX07.Direction = UIValve.UIValveDirection.Right;
-            DCFVX07.Location = new Point(557, 423);
+            DCFVX07.Location = new Point(553, 426);
             DCFVX07.Name = "DCFVX07";
             DCFVX07.PipeSize = 15;
             DCFVX07.RectColor = Color.Gray;
             DCFVX07.Size = new Size(60, 60);
             DCFVX07.TabIndex = 659;
-            DCFVX07.Tag = "7";
+            DCFVX07.Tag = "14";
             DCFVX07.Text = "uiValve1";
             DCFVX07.ValveColor = Color.Gray;
             DCFVX07.ZoomScaleDisabled = true;
             DCFVX07.ActiveChanged += DCF_ActiveChanged;
+            DCFVX07.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiLabel27
             // 
             uiLabel27.AutoSize = true;
             uiLabel27.Font = new Font("微软雅黑", 10F);
             uiLabel27.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel27.Location = new Point(584, 414);
+            uiLabel27.Location = new Point(580, 417);
             uiLabel27.Name = "uiLabel27";
             uiLabel27.Size = new Size(67, 20);
             uiLabel27.TabIndex = 661;
@@ -2010,9 +1914,10 @@
             uiPanel14.RectColor = Color.FromArgb(65, 100, 204);
             uiPanel14.Size = new Size(113, 31);
             uiPanel14.TabIndex = 663;
-            uiPanel14.Text = "电流调节(mA)";
+            uiPanel14.Text = "36V电压调节";
             uiPanel14.TextAlignment = ContentAlignment.MiddleCenter;
             uiPanel14.Click += LabCurrentOut_Click;
+            uiPanel14.MouseDown += uiSwitch2_MouseDown;
             // 
             // uiPanel15
             // 
@@ -2045,30 +1950,19 @@
             LabCurrentOut.Text = "uiDigitalLabel2";
             LabCurrentOut.TextAlign = HorizontalAlignment.Center;
             LabCurrentOut.Click += LabCurrentOut_Click;
-            // 
-            // btnRequestTest
-            // 
-            btnRequestTest.Font = new Font("Microsoft YaHei UI", 10F);
-            btnRequestTest.Location = new Point(8, 717);
-            btnRequestTest.Name = "btnRequestTest";
-            btnRequestTest.Size = new Size(130, 40);
-            btnRequestTest.TabIndex = 664;
-            btnRequestTest.Text = "绝缘耐压界面";
-            btnRequestTest.Type = AntdUI.TTypeMini.Primary;
-            btnRequestTest.Click += btnRequestTest_Click;
+            LabCurrentOut.MouseDown += uiSwitch2_MouseDown;
             // 
             // UcHMI_FLE
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 245, 247);
-            Controls.Add(btnRequestTest);
+            Controls.Add(EP01);
+            Controls.Add(uiPanel3);
+            Controls.Add(uiPanel6);
+            Controls.Add(uiPipe20);
             Controls.Add(uiPanel14);
             Controls.Add(uiPanel15);
-            Controls.Add(EP01);
-            Controls.Add(uiPanel6);
-            Controls.Add(uiPipe5);
-            Controls.Add(uiPipe20);
             Controls.Add(uiLabel27);
             Controls.Add(DCFVX07);
             Controls.Add(uiPipe24);
@@ -2077,9 +1971,6 @@
             Controls.Add(uiPanel2);
             Controls.Add(uiPanel13);
             Controls.Add(uiPipe23);
-            Controls.Add(uiPanel4);
-            Controls.Add(uiPipe22);
-            Controls.Add(uiPipe17);
             Controls.Add(uiLabel4);
             Controls.Add(uiPipe2);
             Controls.Add(uiPipe15);
@@ -2111,7 +2002,6 @@
             Controls.Add(uiPanel1);
             Controls.Add(uiPanel24);
             Controls.Add(uiPipe33);
-            Controls.Add(uiPanel3);
             Controls.Add(uiPipe29);
             Controls.Add(uiPipe21);
             Controls.Add(uiPanel9);
@@ -2119,7 +2009,6 @@
             Controls.Add(uiPanel7);
             Controls.Add(uiPanel22);
             Controls.Add(uiPanel21);
-            Controls.Add(grpDI);
             Controls.Add(grpDO);
             Controls.Add(uiPanel11);
             Controls.Add(uiPipe10);
@@ -2138,7 +2027,6 @@
             Controls.Add(uiPipe18);
             Controls.Add(uiPipe1);
             Controls.Add(uiLabel1);
-            Controls.Add(uiPipe19);
             Controls.Add(uiPipe3);
             Controls.Add(uiPipe30);
             Controls.Add(uiPipe12);
@@ -2157,7 +2045,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             uiPanel21.ResumeLayout(false);
-            grpDI.ResumeLayout(false);
             grpDO.ResumeLayout(false);
             grpDO.PerformLayout();
             uiPanel24.ResumeLayout(false);
@@ -2221,9 +2108,6 @@
         private UIPanel uiPanel22;
         private UIPanel uiPanel21;
         private UIDigitalLabel LabVoltageOut;
-        private UIPanel grpDI;
-        private UILabel uiLabel32;
-        private UILabel uiLabel33;
         private UIPanel grpDO;
         private UISwitch uiSwitch2;
         private Label label9;
@@ -2242,18 +2126,13 @@
         private UILabel uiLabel44;
         private UILabel LabPE01;
         private UIPipe uiPipe33;
-        private UILedBulb uiLedBulb2;
-        private UILedBulb uiLedBulb1;
         private UIPanel uiPanel7;
         private AntdUI.Label label13;
         private UILabel uiLabel3;
         private UILabel LabPE08;
         private UIPipe uiPipe36;
         private UIPipe uiPipe20;
-        private UIPipe uiPipe5;
-        private UIPipe uiPipe19;
         private UIPipe uiPipe21;
-        private UIPanel uiPanel4;
         private UIPanel uiPanel1;
         private UIPanel uiPanel6;
         private UIPipe uiPipe26;
@@ -2287,8 +2166,6 @@
         private UIPipe uiPipe15;
         private UIValve uiValve3;
         private UIPipe uiPipe16;
-        private UIPipe uiPipe17;
-        private UIPipe uiPipe22;
         private UIPanel uiPanel2;
         private UIPanel uiPanel13;
         private AntdUI.Label label6;
@@ -2304,5 +2181,7 @@
         private UIPanel uiPanel15;
         private UIDigitalLabel LabCurrentOut;
         private AntdUI.Button btnRequestTest;
+        private UISwitch uiSwitch3;
+        private Label label10;
     }
 }
