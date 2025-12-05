@@ -14,7 +14,7 @@
                 int VoltageValue = Read("SET21").ToInt(); // 电磁阀供电电压值
 
                 SetCurrentOutput(0); //电流给0
-                VoltageOutput(VoltageValue);// 电磁阀供电
+                Voltage36VOutput(VoltageValue);// 电磁阀供电
                 VX12(true);
                 VX05(true); //打开EX(缓解C)路
                 MRInflate(MRPressure);// MR充气
@@ -56,7 +56,7 @@
                 bool finished = false; // 是否已完成计时
 
                 // 2.测定“试验电压”SW＝OFF、RD2.5L(PE08)压力的下降时间。
-                VoltageControl(false);
+                Voltage36VControl(false);
 
                 // 开始计时，检测压力从490降到50的时间
                 sw = Stopwatch.StartNew();
@@ -109,7 +109,7 @@
 
                 // 3.供给容量 - 测定"试验电压"SW＝ON、RD2.5L(PE08)压力的上升时间(从0到390)
                 TxtTips("====== 开始检测压力上升时间 (0→390) ======");
-                VoltageControl(true);
+                Voltage36VControl(true);
 
                 int UPStart = Read("SET19").ToInt(); // 气压开始标准
                 int UPEnd = Read("SET20").ToInt();   // 气压结束标准

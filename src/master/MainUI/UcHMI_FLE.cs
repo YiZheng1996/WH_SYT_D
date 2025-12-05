@@ -57,7 +57,7 @@ namespace MainUI.Procedure.User
             }
             catch (Exception ex)
             {
-                NlogHelper.Default.Error("加载气控阀信号控件异常！：", ex); ;
+                NlogHelper.Default.Error("加载气控阀信号控件异常！：", ex);
             }
         }
         private void LoaddicCGQ()
@@ -74,6 +74,10 @@ namespace MainUI.Procedure.User
                 rbtCGQ.Add(Convert.ToInt32(LabPE07.Tag), LabPE07);
                 rbtCGQ.Add(Convert.ToInt32(LabPE08.Tag), LabPE08);
                 rbtCGQ.Add(Convert.ToInt32(LabPE09.Tag), LabPE09);
+                // 电压传感器
+                rbtCGQ.Add(Convert.ToInt32(LabVoltageSensor1.Tag), LabVoltageSensor1);
+                rbtCGQ.Add(Convert.ToInt32(LabVoltageSensor2.Tag), LabVoltageSensor2);
+                rbtCGQ.Add(Convert.ToInt32(LabVoltageSensor3.Tag), LabVoltageSensor3);
             }
             catch (Exception ex)
             {
@@ -147,13 +151,18 @@ namespace MainUI.Procedure.User
             switch (index)
             {
                 case 0:
-                    EP01.Text = value.ToString("f1");
-                    break;
-                case 1:
                     LabCurrentOut.Value = value;
                     break;
+                case 1: break;
                 case 2:
-                    LabVoltageOut.Value = value;
+                    EP01.Text = value.ToString("f1");
+                    break;
+                case 3: break;
+                case 4:
+                    LabVoltageOut160V.Value = value;
+                    break;
+                case 5:
+                    LabVoltageOut36V.Value = value;
                     break;
                 default:
                     break;
@@ -189,8 +198,7 @@ namespace MainUI.Procedure.User
                 {
                     ControlHelper.ButtonClickAsync(sender, () =>
                     {
-                        lab.Text = fs.OutValue.ToString();
-                        OPCHelper.AOgrp.CA00 = fs.OutValue;
+                        OPCHelper.AOgrp.CA02 = fs.OutValue;
                     });
                 }
             }
@@ -201,20 +209,17 @@ namespace MainUI.Procedure.User
         }
 
 
-        private void LabVoltageOut_ValueChanged(object sender, EventArgs e)
+        private void LabVoltageOut160V_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                frmSetOutValue fs = new(0, "电压调节(V)", 150);
+                frmSetOutValue fs = new(0, "160V电压调节(V)", 160);
                 VarHelper.ShowDialogWithOverlay(_form, fs);
                 if (fs.DialogResult == DialogResult.OK)
                 {
                     ControlHelper.ButtonClickAsync(sender, () =>
                     {
-                        LabVoltageOut.Value = fs.OutValue;
-                        //TODO:由于未出点表，暂定CA02输出电压
-                        //20151118修改为CA02改为CA01
-                        OPCHelper.AOgrp.CA01 = fs.OutValue;
+                        OPCHelper.AOgrp.CA04 = fs.OutValue;
                     });
                 }
             }
@@ -230,16 +235,13 @@ namespace MainUI.Procedure.User
             try
             {
                 // 电流不得高于750mA以上。如果高于750mA以上，则试验品有可能被烧毁。
-                frmSetOutValue fs = new(0, "电流调节(mA)", 750);
+                frmSetOutValue fs = new(0, "36V电源输出电流控制(mA)", 750);
                 VarHelper.ShowDialogWithOverlay(_form, fs);
                 if (fs.DialogResult == DialogResult.OK)
                 {
                     ControlHelper.ButtonClickAsync(sender, () =>
                     {
-                        LabCurrentOut.Value = fs.OutValue;
-                        //TODO:由于未出点表，暂定CA01输出电流
-                        //20151118修改为CA01改为CA02
-                        OPCHelper.AOgrp.CA02 = fs.OutValue;
+                        OPCHelper.AOgrp.CA00 = fs.OutValue;
                     });
                 }
             }
@@ -285,5 +287,26 @@ namespace MainUI.Procedure.User
                 return;
             }
         }
+
+        private void LabVoltageOut36V_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmSetOutValue fs = new(0, "36V电源输出电压控制(V)", 36);
+                VarHelper.ShowDialogWithOverlay(_form, fs);
+                if (fs.DialogResult == DialogResult.OK)
+                {
+                    ControlHelper.ButtonClickAsync(sender, () =>
+                    {
+                        OPCHelper.AOgrp.CA05 = fs.OutValue;
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                NlogHelper.Default.Error("调节电源设置输出时发生异常", ex);
+            }
+        }
+
     }
 }

@@ -14,7 +14,7 @@
                 int VoltageValue = Read("SET21").ToInt(); // 电磁阀供电电压值
 
                 SetCurrentOutput(0); //电流给0
-                VoltageOutput(VoltageValue);// 电磁阀供电
+                Voltage36VOutput(VoltageValue);// 电磁阀供电
                 VX12(true);
                 VX05(true); //打开EX(缓解C)路
                 MRInflate(MRPressure);// MR充气

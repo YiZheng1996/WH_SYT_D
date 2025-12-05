@@ -1,4 +1,6 @@
-﻿namespace MainUI.Procedure.Test
+﻿using Google.Protobuf.WellKnownTypes;
+
+namespace MainUI.Procedure.Test
 {
     /// <summary>
     /// 通用方法测试类，继承自BaseTest，提供具体的测试实现
@@ -48,11 +50,15 @@
                 
                 // 试验前排空所有气压
                 SetSolenoidValueS(0.0, true);
-                SetCurrentOutput(0); // 电流给0
-                VoltageOutput(0);    // 电压给0
-                VoltageControl(false); // 电压输出关闭
+                OPCHelper.AOgrp.CA04 = 0; // 160V电源输出电压控制为0V
+                OPCHelper.AOgrp.CA05 = 0; // 36V电源输出电压控制为0V
+                OPCHelper.AOgrp.CA00 = 0; // 36V电源输出电流控制为0mA
+                OPCHelper.DOgrp[4] = false; // 160V被试品供电关闭
+                OPCHelper.DOgrp[6] = false; // 36V被试品供电关闭
                 Thread.Sleep(10000); // 等待10秒确保排空完成
                 SetSolenoidValueS(0.0, false);
+
+                //TODO:耐压合闸和电阻合闸测试 是做什么用的？需要在这里初始化吗？
 
                 NlogHelper.Default.Info("全局初始化完成");
             }
@@ -74,9 +80,11 @@
                 // 在这里添加你的全局清理逻辑
                 // 试验结束排空所有气压
                 SetSolenoidValueS(0.0, true);
-                SetCurrentOutput(0); // 电流给0
-                VoltageOutput(0);    // 电压给0
-                VoltageControl(false); // 电压输出关闭
+                OPCHelper.AOgrp.CA04 = 0; // 160V电源输出电压控制为0V
+                OPCHelper.AOgrp.CA05 = 0; // 36V电源输出电压控制为0V
+                OPCHelper.AOgrp.CA00 = 0; // 36V电源输出电流控制为0mA
+                OPCHelper.DOgrp[4] = false; // 160V被试品供电关闭
+                OPCHelper.DOgrp[6] = false; // 36V被试品供电关闭
                 Thread.Sleep(10000); // 等待10秒确保排空完成
                 SetSolenoidValueS(0.0, false);
 
@@ -180,14 +188,30 @@
         #region 数字量控制
 
         /// <summary>
-        /// 试验电压输出控制
+        /// 试验电压160V输出控制
         /// </summary>
         /// <param name="Value">操作值</param>
-        public static void VoltageControl(bool Value)
+        public static void Voltage160VControl(bool Value)
         {
-            //TODO:由于未出点表，暂定DO20控制电压输出
-            // 20251118,将DO20改为DO4
             OPCHelper.DOgrp[4] = Value;
+        }
+
+        /// <summary>
+        /// 试验电压36V输出控制
+        /// </summary>
+        /// <param name="Value">操作值</param>
+        public static void Voltage36VControl(bool Value)
+        {
+            OPCHelper.DOgrp[5] = Value;
+        }
+
+        /// <summary>
+        /// 试验36V电流输出控制
+        /// </summary>
+        /// <param name="Value">操作值</param>
+        public static void CurrentControl(bool Value)
+        {
+            OPCHelper.DOgrp[6] = Value;
         }
         #endregion
 
@@ -207,12 +231,11 @@
         /// <param name="Current">电流值</param>
         public static void SetCurrentOutput(double Current)
         {
-            //TODO:由于未出点表，暂定CA01输出电流
             // 电流不得高于750mA以上。如果高于750mA以上，则试验品有可能被烧毁。
-
-            // 20251118,将CA01改为CA02
             if (Current >= 750) Current = 750;
-            OPCHelper.AOgrp.CA02 = Current;
+            OPCHelper.AOgrp.CA00 = Current;
+            Thread.Sleep(1000); // 等待1000ms确保电压输出稳定
+            CurrentControl(true);
         }
 
         /// <summary>
@@ -221,21 +244,29 @@
         /// <returns></returns>
         public static double GetCurrentOutput()
         {
-            //TODO:由于未出点表，暂定CA01输出电流
-            return OPCHelper.AOgrp.CA01;
+            return OPCHelper.AOgrp.CA00;
         }
 
         /// <summary>
         /// 输出电压
         /// </summary>
         /// <param name="Voltage">电压值</param>
-        public static void VoltageOutput(double Voltage)
+        public static void Voltage160VOutput(double Voltage)
         {
-            //TODO:由于未出点表，暂定CA02输出电压，好像还少了DO点 确认输出点
-            // 20251118,将CA02改为CA01
-            OPCHelper.AOgrp.CA01 = Voltage;
+            OPCHelper.AOgrp.CA04 = Voltage;
             Thread.Sleep(1000); // 等待1000ms确保电压输出稳定
-            VoltageControl(true);
+            Voltage160VControl(true);
+        }
+
+        /// <summary>
+        /// 输出电压
+        /// </summary>
+        /// <param name="Voltage">电压值</param>
+        public static void Voltage36VOutput(double Voltage)
+        {
+            OPCHelper.AOgrp.CA05 = Voltage;
+            Thread.Sleep(1000); // 等待1000ms确保电压输出稳定
+            Voltage36VControl(true);
         }
         #endregion
 
@@ -356,8 +387,7 @@
         /// <returns></returns>
         public double GetCurrent()
         {
-            //TODO:由于未出点表，暂定AI09为电流传感器
-            return OPCHelper.AIgrp[9];
+            return OPCHelper.AIgrp[10];
         }
 
         /// <summary>

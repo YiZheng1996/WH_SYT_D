@@ -24,7 +24,7 @@
 
                 // 2.设定电流A＝约600mA，并确认RD2.5L压力＝590 kPa
                 //   设定电压电流值
-                VoltageOutput(VoltageValue); // 电磁阀供电
+                Voltage36VOutput(VoltageValue); // 电磁阀供电
                 SetCurrentOutput(CurrentValue); // 电磁阀输入电流
 
                 // 确认RD2.5L压力＝590 kPa

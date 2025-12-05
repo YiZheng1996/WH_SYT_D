@@ -15,8 +15,8 @@
                 double TestVoltage = Read("GDDY").ToDouble(); //试验电压
 
                 BCRoadExhaust(true);  // BC电磁阀打开
-                VoltageOutput(TestVoltage);   // 输出电压
-                VoltageControl(false); // 电压输出关闭
+                Voltage160VOutput(TestVoltage);   // 输出电压
+                Voltage160VControl(false); // 电压输出关闭
                 VX06(true);
                 Delay(5);
                 VX06(false);

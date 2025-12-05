@@ -17,7 +17,7 @@
                 double SetCurrent = Read("SET9").ToDouble(); //上升电流初始值
 
                 SetCurrentOutput(0); //电流给0
-                VoltageOutput(VoltageValue);// 电磁阀供电
+                Voltage36VOutput(VoltageValue);// 电磁阀供电
                 VX12(true);
                 MRInflate(MRPressure);// MR充气
 

@@ -5,7 +5,7 @@ namespace MainUI.Modules
 {
     public partial class AIGrp : BaseModule
     {
-        public const int AIcount = 10;
+        public const int AIcount = 20;
         public Hardware[] hardwares = new Hardware[AIcount];
         private readonly double[] _AiList = new double[AIcount];
         public double[] AIList => _AiList;

@@ -16,8 +16,8 @@ namespace MainUI.Procedure.Test
                 double TestVoltage = Read("GDDY").ToDouble(); //试验电压
 
                 BCRoadExhaust(true);  // BC电磁阀打开
-                VoltageOutput(TestVoltage);   // 输出电压100V
-                VoltageControl(false); // 电压输出关闭
+                Voltage160VOutput(TestVoltage);   // 输出电压100V
+                Voltage160VControl(false); // 电压输出关闭
                 MRInflate(MRPressure);// MR充气
 
                 Delay(30, "充气时间");

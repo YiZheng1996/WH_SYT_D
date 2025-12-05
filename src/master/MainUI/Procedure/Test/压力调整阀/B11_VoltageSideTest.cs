@@ -17,11 +17,11 @@
                 double TestVoltage = Read("GDDY").ToDouble(); //试验电压
 
                 BCRoadExhaust(true);  // BC电磁阀打开
-                VoltageOutput(TestVoltage);   // 输出电压100V
-                VoltageControl(true); // 电压输出开启
+                Voltage160VOutput(TestVoltage);   // 输出电压100V
+                Voltage160VControl(true); // 电压输出开启
                 MRInflate(MRPressure);// MR充气
 
-                VoltageControl(false); // 电压输出关闭
+                Voltage160VControl(false); // 电压输出关闭
                 FrmVoltageSide frmVoltage = new()
                 {
                     PromptMessage = $"请转动高压侧调整螺钉（下侧）来进行调整压力至指定值({HighPressure}～{HighToPressure})后，点击是提交。"
@@ -57,7 +57,7 @@
                 double LowPressure =  Read("SET12").ToDouble();   // 低压侧压力值
                 double LowToPressure = Read("SET13").ToDouble(); ; // 低压侧压力值
 
-                VoltageControl(true); // 电压输出开启
+                Voltage160VControl(true); // 电压输出开启
                 VX06(true);
                 Delay(5, "排气时间");
                 VX06(false);

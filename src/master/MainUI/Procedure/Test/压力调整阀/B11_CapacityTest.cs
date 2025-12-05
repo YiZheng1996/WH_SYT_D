@@ -17,7 +17,7 @@ namespace MainUI.Procedure.Test
                 double TestVoltage = Read("GDDY").ToDouble(); //试验电压
                 double UpkPa = Read("SET8").ToDouble(); ;   //上升至气压标准值
                 double DownkPa = Read("SET9").ToDouble(); ; //下降至气压标准值
-                VoltageOutput(TestVoltage);   // 输出电压100V
+                Voltage160VOutput(TestVoltage);   // 输出电压100V
 
                 VX01(false);
                 VX02(false);
@@ -27,7 +27,7 @@ namespace MainUI.Procedure.Test
                 VX08(true);
                 VX06(true);
                 Delay(20, 100, () => PE06() <= 10); //排空气压
-                VoltageControl(false); // 电压输出关闭
+                Voltage160VControl(false); // 电压输出关闭
                 VX06(false);
                 EP01(MRPressure);
                 VX01(true);
@@ -44,7 +44,7 @@ namespace MainUI.Procedure.Test
 
                 // 排气容量
                 sw = Stopwatch.StartNew();
-                VoltageControl(true); // 电压输出关闭
+                Voltage160VControl(true); // 电压输出关闭
                 Delay(10, 100, () => PE06() <= DownkPa); //排空气压
                 sw.Stop();
                 
